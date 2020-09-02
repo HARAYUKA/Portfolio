@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
-  def new
+  def parent_login
   end
+
+  def nursery_login
+  end
+
 end

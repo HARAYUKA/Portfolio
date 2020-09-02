@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'home/top'
+  root 'home#top'
 
   get '/signup', to: 'users#new'
 
   # ログイン機能
-  get    '/login', to: 'sessions#new'
+  get    'parent/login', to: 'sessions#parent_login'
+  get    'nursery/login', to: 'sessions#nursery_login'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  resources :parents
+
+  resources :nurseries
 end
