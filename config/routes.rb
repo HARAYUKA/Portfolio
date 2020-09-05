@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # ログイン機能
   get    'parent/login', to: 'sessions#parent_login'
   get    'nursery/login', to: 'sessions#nursery_login'
-  post   '/login', to: 'sessions#create'
+  post   'parent/login', to: 'sessions#parent_create'
+  post   'nursery/login', to: 'sessions#nursery_create'
   delete '/logout', to: 'sessions#destroy'
 
   resources :parents
