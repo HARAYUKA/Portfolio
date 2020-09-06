@@ -1,0 +1,22 @@
+<% provide(:title, @parent.name) %>
+<!--連絡帳一覧テーブル-->
+<div>
+  <table class="table table-bordered table-striped table-condensed parent-table">
+    <tr>
+      <td>登園月</td>
+      <td>クラス</td>
+      <td>園児名</td>
+      <td>登園日数</td>
+    </tr>
+
+    <tr>
+      <td>
+        <%= link_to "⬅︎ ", '#', class: "btn btn-info-small" %>
+        <%= link_to " ➡︎︎", '#', class: "btn btn-info-small" %>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>

@@ -3,17 +3,17 @@
     <%= link_to "えんアプリ", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-expand-lg navbar-right">
-        <li><%= link_to "トップ", root_path %></li>
+        <li><%= link_to "トップ　", root_path %></li>
         <% if parent_logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              アカウント <b class="caret"></b>
+              メニュー <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "連絡帳一覧", '#' %></li>
               <li><%= link_to "登園登録", '#' %></li>
               <li><%= link_to "基本情報編集", '#' %></li>
-              <li class="divider"></li>
+              <li class="dropdown-divider"></li>
               <li>
                 <%= link_to "ログアウト", '#', method: :delete %>
               </li>
@@ -22,12 +22,12 @@
         <% elsif nursery_logged_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              アカウント <b class="caret"></b>
+              メニュー <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "登園予定園児一覧", '#' %></li>
               <li><%= link_to "基本情報編集", '#' %></li>
-              <li class="divider"></li>
+              <li class="dropdown-divider"></li>
               <li>
                 <%= link_to "ログアウト", '#', method: :delete %>
               </li>
