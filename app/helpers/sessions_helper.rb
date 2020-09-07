@@ -8,6 +8,19 @@ module SessionsHelper
     session[:nursery_id] = nursery.id
   end
 
+   # セッションと@current_userを破棄します
+  def logout_parent
+    session.delete(:parent_id)
+    @current_parent = nil
+  end
+
+  def logout_nursery
+    session.delete(:nursery_id)
+    @current_nursery = nil
+  end
+
+
+
   # 現在ログイン中のユーザーがいる場合オブジェクトを返します。
   def current_parent
     if session[:parent_id]

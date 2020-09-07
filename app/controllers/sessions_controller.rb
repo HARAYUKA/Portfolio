@@ -27,4 +27,16 @@ class SessionsController < ApplicationController
     end
   end
 
+  def parent_destroy
+    logout_parent
+    flash[:success] = 'ログアウトしました。'
+    redirect_to root_url
+  end
+
+  def nursery_destroy
+    logout_nursery
+    flash[:success] = 'ログアウトしました。'
+    redirect_to root_url
+  end
+
 end
