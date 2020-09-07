@@ -4,5 +4,6 @@ class NurseriesController < ApplicationController
   end
 
   def new
+    @nursery = Nursery.new
   end
 end
