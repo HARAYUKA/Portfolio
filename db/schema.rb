@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_08_30_135154) do
 
-  create_table "nurseries", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_nurseries_on_email", unique: true
-  end
-
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -28,6 +19,15 @@ ActiveRecord::Schema.define(version: 2020_08_30_135154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_parents_on_email", unique: true
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_teachers_on_email", unique: true
   end
 
 end

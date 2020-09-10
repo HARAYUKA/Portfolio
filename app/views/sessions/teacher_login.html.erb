@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <%= form_with(scope: :session, url: nursery_login_path, local: true) do |f| %>
+    <%= form_with(scope: :session, url: teacher_login_path, local: true) do |f| %>
 
       <%= f.label :email, "メールアドレス", class: "label-login" %>
       <%= f.email_field :email, class: 'form-control' %>
@@ -19,7 +19,7 @@
       <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
     <% end %>
     <p>
-      新規ユーザーですか？<%= link_to "アカウント登録はこちら", new_nurseries_path %>
+      新規ユーザーですか？<%= link_to "アカウント登録はこちら", new_teacher_path %>
     </p>
   </div>
 </div>

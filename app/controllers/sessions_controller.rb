@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def parent_login
   end
 
-  def nursery_login
+  def teacher_login
   end
 
   def parent_create
@@ -16,14 +16,14 @@ class SessionsController < ApplicationController
     end
   end
 
-  def nursery_create
-    nursery = Nursery.find_by(email: params[:session][:email].downcase)
-    if nursery && nursery.authenticate(params[:session][:password])
-      log_in_nursery nursery
-      redirect_to nursery
+  def teacher_create
+    teacher = Teacher.find_by(email: params[:session][:email].downcase)
+    if teacher && teacher.authenticate(params[:session][:password])
+      log_in_teacher teacher
+      redirect_to teacher
     else
       flash.now[:danger] = '認証に失敗しました。'
-      render :nursery_login
+      render :teacher_login
     end
   end
 
@@ -33,8 +33,8 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  def nursery_destroy
-    logout_nursery
+  def teacher_destroy
+    logout_teacher
     flash[:success] = 'ログアウトしました。'
     redirect_to root_url
   end

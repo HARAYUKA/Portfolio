@@ -1,6 +1,6 @@
-class CreateNurseries < ActiveRecord::Migration[5.2]
+class CreateTeachers < ActiveRecord::Migration[5.2]
   def change
-    create_table :nurseries do |t|
+    create_table :teachers do |t|
       t.string :name
       t.string :email
       t.string :password_digest

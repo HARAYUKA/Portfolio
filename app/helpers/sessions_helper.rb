@@ -4,8 +4,8 @@ module SessionsHelper
     session[:parent_id] = parent.id
   end
 
-  def log_in_nursery(nursery)
-    session[:nursery_id] = nursery.id
+  def log_in_teacher(teacher)
+    session[:teacher_id] = teacher.id
   end
 
    # セッションと@current_userを破棄します
@@ -14,9 +14,9 @@ module SessionsHelper
     @current_parent = nil
   end
 
-  def logout_nursery
-    session.delete(:nursery_id)
-    @current_nursery = nil
+  def logout_teacher
+    session.delete(:teacher_id)
+    @current_teacher = nil
   end
 
 
@@ -28,9 +28,9 @@ module SessionsHelper
     end
   end
 
-  def current_nursery
-    if session[:nursery_id]
-      @current_nursery ||= Nursery.find_by(id: session[:nursery_id])
+  def current_teacher
+    if session[:teacher_id]
+      @current_teacher ||= Teacher.find_by(id: session[:teacher_id])
     end
   end
 
@@ -39,8 +39,8 @@ module SessionsHelper
     !current_parent.nil?
   end
 
-  def nursery_logged_in?
-    !current_nursery.nil?
+  def teacher_logged_in?
+    !current_teacher.nil?
   end
 
 end

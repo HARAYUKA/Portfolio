@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   # ログイン機能
   get    'parent/login', to: 'sessions#parent_login'
-  get    'nursery/login', to: 'sessions#nursery_login'
+  get    'teacher/login', to: 'sessions#teacher_login'
   post   'parent/login', to: 'sessions#parent_create'
-  post   'nursery/login', to: 'sessions#nursery_create'
+  post   'teacher/login', to: 'sessions#teacher_create'
   delete 'parent/logout', to: 'sessions#parent_destroy'
-  delete 'nursery/logout', to: 'sessions#nursery_destroy'
+  delete 'teacher/logout', to: 'sessions#teacher_destroy'
 
   resources :parents
 
-  resources :nurseries
+  resources :teachers
 end
