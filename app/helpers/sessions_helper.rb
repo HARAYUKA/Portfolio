@@ -21,14 +21,27 @@ module SessionsHelper
     cookies.permanent[:remember_token] = teacher.remember_token
   end
 
+  # 永続的セッションを破棄します
+  def forget(parent)
+    parent.forget
+    cookies.delete(:parent_id)
+    cookies.delete(:remember_token)
+  end
+
+  def forget(teacher)
+    teacher.forget
+    cookies.delete(:teacher_id)
+    cookies.delete(:remember_token)
+  end
+
    # セッションと@current_userを破棄します
   def logout_parent
-    session.delete(:parent_id)
+    forget(current_parent)
     @current_parent = nil
   end
 
   def logout_teacher
-    session.delete(:teacher_id)
+    forget(current_teacher)
     @current_teacher = nil
   end
 
