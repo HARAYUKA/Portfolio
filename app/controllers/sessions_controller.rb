@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     parent = Parent.find_by(email: params[:session][:email].downcase)
     if parent && parent.authenticate(params[:session][:password])
       log_in_parent parent
+      remember parent
       redirect_to parent
     else
       flash.now[:danger] = '認証に失敗しました。'
@@ -20,6 +21,7 @@ class SessionsController < ApplicationController
     teacher = Teacher.find_by(email: params[:session][:email].downcase)
     if teacher && teacher.authenticate(params[:session][:password])
       log_in_teacher teacher
+      remember teacher
       redirect_to teacher
     else
       flash.now[:danger] = '認証に失敗しました。'

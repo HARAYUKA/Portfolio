@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_30_135154) do
+ActiveRecord::Schema.define(version: 2020_09_12_130051) do
 
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "remember_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_parents_on_email", unique: true
@@ -25,8 +26,10 @@ ActiveRecord::Schema.define(version: 2020_08_30_135154) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "remember_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_teachers_on_email", unique: true
   end
 
