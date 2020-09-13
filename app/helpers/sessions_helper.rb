@@ -72,6 +72,15 @@ module SessionsHelper
     end
   end
 
+  # 渡されたユーザーがログイン済みのユーザーであればtrueを返します。
+  def current_parent?(parent)
+    parent == current_parent
+  end
+
+  def current_teacher?(teacher)
+    teacher == current_teacher
+  end
+
   # 現在ログイン中のユーザーがいればtrue、そうでなければfalseを返します。
   def parent_logged_in?
     !current_parent.nil?
