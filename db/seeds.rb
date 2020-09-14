@@ -6,7 +6,7 @@ Teacher.create!(name: "管理者",
              password_confirmation: "password",
              admin: true)
              
-3.times do |n|
+20.times do |n|
   name  = Faker::Name.name
   email = "parent#{n+1}@email.com"
   password = "password"
@@ -16,7 +16,7 @@ Teacher.create!(name: "管理者",
                password_confirmation: password)
 end
 
-3.times do |n|
+20.times do |n|
   name  = Faker::Name.name
   email = "teacher#{n+1}@email.com"
   password = "password"

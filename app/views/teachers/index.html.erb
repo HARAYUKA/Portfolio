@@ -1,0 +1,25 @@
+<% provide(:title, 'All Teachers') %>
+<h1>保育者一覧</h1>
+
+<div class="col-md-10 offset-md-1">
+  <%= will_paginate %>
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th><%= Teacher.human_attribute_name :name %></th>
+      </tr>
+    </thead>
+
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= link_to teacher.name, teacher %></td>
+        <td>
+          <%= link_to "削除", teacher, method: :delete,
+          data: { confirm: "削除してよろしいですか？" },
+          class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate %>
+</div>

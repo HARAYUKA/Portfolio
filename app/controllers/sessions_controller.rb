@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if parent && parent.authenticate(params[:session][:password])
       log_in_parent parent
       params[:session][:remember_me] == '1' ? remember(parent) : forget(parent)
-      redirect_to parent
+      redirect_back_or parent
     else
       flash.now[:danger] = '認証に失敗しました。'
       render :parent_login
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
     if teacher && teacher.authenticate(params[:session][:password])
       log_in_teacher teacher
       params[:session][:remember_me] == '1' ? remember(teacher) : forget(teacher)
-      redirect_to teacher
+      redirect_back_or teacher
     else
       flash.now[:danger] = '認証に失敗しました。'
       render :teacher_login

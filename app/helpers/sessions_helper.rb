@@ -37,11 +37,13 @@ module SessionsHelper
    # セッションと@current_userを破棄します
   def logout_parent
     forget(current_parent)
+    session.delete(:parent_id)
     @current_parent = nil
   end
 
   def logout_teacher
     forget(current_teacher)
+    session.delete(:teacher_id)
     @current_teacher = nil
   end
 
@@ -89,5 +91,16 @@ module SessionsHelper
   def teacher_logged_in?
     !current_teacher.nil?
   end
+
+  # 記憶しているURL(またはデフォルトURL)にリダイレクトします。
+  def redirect_back_or(default_url)
+    redirect_to(session[:forwarding_url] || default_url)
+    session.delete(:forwarding_url)
+  end
+
+  # アクセスしようとしたURLを記憶します。
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end  
 
 end

@@ -1,7 +1,12 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update]
-  before_action :logged_in_teacher, only: [:show, :edit, :update]
+  before_action :logged_in_teacher, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:edit, :update]
+  # before_action :admin_teacher, only: :destroy
+
+  def index
+    @teachers = Teacher.paginate(page: params[:page], per_page: 10)
+  end
 
   def show
   end
@@ -32,29 +37,15 @@ class TeachersController < ApplicationController
     end
   end
 
+  def destroy
+    @teacher.destroy
+    flash[:success] = "#{@teacher.name}のデータを削除しました。"
+    redirect_to teachers_url
+  end
+
   private
 
       def teacher_params
         params.require(:teacher).permit(:name, :email, :password, :password_confirmation)
       end
-
-      # paramsハッシュからユーザーを取得します。
-      def set_teacher
-        @teacher = Teacher.find(params[:id])
-      end
-
-      # ログイン済みのユーザーか確認します。
-      def logged_in_teacher
-        unless teacher_logged_in?
-          flash[:danger] = "ログインしてください。"
-          redirect_to login_url
-        end
-      end
-
-      # アクセスしたユーザーが現在ログインしているユーザーか確認します。
-      def correct_teacher
-        @teacher = Teacher.find(params[:id])
-        redirect_to(root_url) unless @teacher == current_teahcer
-      end
-
 end

@@ -12,6 +12,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "登園登録", current_parent %></li>
               <li><%= link_to "連絡帳一覧", '#' %></li>
+              <li><%= link_to "保護者一覧", parents_path %></li>
               <li><%= link_to "基本情報編集", edit_parent_path(current_parent) %></li>
               <li class="dropdown-divider"></li>
               <li>
@@ -26,6 +27,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "登園予定園児一覧", '#' %></li>
+              <li><%= link_to "保育者一覧", teachers_path %></li>
               <li><%= link_to "基本情報編集", edit_teacher_path(current_teacher) %></li>
               <li class="dropdown-divider"></li>
               <li>

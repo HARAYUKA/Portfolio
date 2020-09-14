@@ -1,0 +1,25 @@
+<% provide(:title, 'All Parents') %>
+<h1>保護者一覧</h1>
+
+<div class="col-md-10 offset-md-1">
+  <%= will_paginate %>
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th><%= Parent.human_attribute_name :name %></th>
+      </tr>
+    </thead>
+
+    <% @parents.each do |parent| %>
+      <tr>
+        <td><%= link_to parent.name, parent %></td>
+        <td>
+          <%= link_to "削除", parent, method: :delete,
+          data: { confirm: "削除してよろしいですか？" },
+          class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate %>
+</div>
