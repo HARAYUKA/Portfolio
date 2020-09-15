@@ -8,6 +8,9 @@ class Parent < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
+  validates :child_name, presence: true, length: { maximum: 50 }
+  validates :child_class, presence: true, length: { in: 2..30 }
+  validates :relationship, presence: true, length: { maximum: 10 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 

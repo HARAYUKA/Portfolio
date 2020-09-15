@@ -8,6 +8,9 @@ ja:
           id: ID
           name: 名前
           email: メールアドレス
+          child_name: 子供の名前
+          child_class: 子供のクラス
+          relationship: 子供との関係性
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
