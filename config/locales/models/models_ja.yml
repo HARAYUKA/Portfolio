@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      parent: 保護者
+      teacher: 保育者
+    attributes:
+        parent:
+          id: ID
+          name: 名前
+          email: メールアドレス
+          password: パスワード
+          password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日
+        teacher:
+          id: ID
+          name: 名前
+          email: メールアドレス
+          password: パスワード
+          password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日

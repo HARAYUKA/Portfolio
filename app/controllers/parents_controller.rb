@@ -1,5 +1,5 @@
 class ParentsController < ApplicationController
-  before_action :set_parent, only: [:show, :edit, :update]
+  before_action :set_parent, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_parent, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_parent, only: [:edit, :update]
   # before_action :admin_teacher, only: :destroy
