@@ -28,10 +28,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # # 園の管理者かどうかを確認
-  # def admin_teacher
-  #   redirect_to root_url unless current_teacher.admin?
-  # end
+  # 園の管理者かどうかを確認
+  def admin_teacher
+    if current_teacher != nil # teacherだったら下の処理
+      redirect_to root_url unless current_teacher.admin?
+    else # teacherでなかったら下の処理
+      flash[:danger] = "権限がありません。"
+      redirect_to root_url
+    end
+  end
 
   # アクセスしたユーザーが現在ログインしているユーザーか確認します。
   def correct_parent

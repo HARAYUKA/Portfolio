@@ -2,7 +2,7 @@ class ParentsController < ApplicationController
   before_action :set_parent, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_parent, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_parent, only: [:edit, :update]
-  # before_action :admin_teacher, only: :destroy
+  before_action :admin_teacher, only: :destroy
 
 
   def index
@@ -47,6 +47,6 @@ class ParentsController < ApplicationController
   private
 
       def parent_params
-        params.require(:parent).permit(:name, :email, :password, :password_confirmation)
+        params.require(:parent).permit(:name, :email, :child_name, :child_class, :relationship, :password, :password_confirmation)
       end
 end
