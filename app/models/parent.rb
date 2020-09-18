@@ -8,9 +8,6 @@ class Parent < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
-  validates :child_name, presence: true, length: { maximum: 50 }
-  validates :child_class, presence: true, length: { in: 2..30 }
-  validates :relationship, presence: true, length: { maximum: 10 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
@@ -46,5 +43,11 @@ class Parent < ApplicationRecord
   # ユーザーのログイン情報を破棄します。
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # 保護者一覧のsearch
+  def self.search(search)
+    return Parent.all unless search
+    Parent.where(['name LIKE ?', "%#{search}%"])
   end
 end

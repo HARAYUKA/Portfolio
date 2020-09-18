@@ -45,4 +45,10 @@ class Teacher < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
+  # 保育者一覧のsearch
+  def self.search(search)
+    return Teacher.all unless search
+    Teacher.where(['name LIKE ?', "%#{search}%"])
+  end
 end

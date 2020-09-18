@@ -7,6 +7,9 @@ class ParentsController < ApplicationController
 
   def index
     @parents = Parent.paginate(page: params[:page], per_page: 10)
+    if params[:search].present?
+      @parents = Parent.paginate(page: params[:page]).search(params[:search]) 
+    end
   end
 
   def show

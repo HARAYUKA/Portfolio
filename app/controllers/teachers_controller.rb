@@ -6,6 +6,9 @@ class TeachersController < ApplicationController
 
   def index
     @teachers = Teacher.paginate(page: params[:page], per_page: 10)
+    if params[:search].present?
+      @teachers = Teacher.paginate(page: params[:page]).search(params[:search]) 
+    end
   end
 
   def show

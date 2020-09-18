@@ -19,6 +19,8 @@ ja:
           id: ID
           name: 名前
           email: メールアドレス
+          staff_id: 職員ID
+          child_class: 担当クラス
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
