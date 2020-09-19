@@ -1,0 +1,45 @@
+<% provide(:class_text, 'manag_info') %>
+<% provide(:button_text, '更新') %>
+
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h1 class="modal-title">編集画面</h1>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <%= form_with(model: @parent, local: true) do |f| %>
+            <%= render 'shared/error_messages', object: @parent %>
+          
+            <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+            <%= f.text_field :name, class: "form-control" %>
+          
+            <%= f.label :email, class: "label-#{yield(:class_text)}" %>
+            <%= f.email_field :email, class: "form-control" %>
+          
+            <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>
+            <%= f.text_field :child_name, class: "form-control" %>
+          
+            <%= f.label :child_class, class: "label-#{yield(:class_text)}" %>
+            <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん', 'ねこ', 'とら', 'らいおん'], {include_blank: false}, class: "form_control" %>
+          
+            <%= f.label :relationship, class: "label-#{yield(:class_text)}" %>
+            <%= f.text_field :relationship, class: "form-control" %>
+          
+            <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+            <%= f.password_field :password, class: "form-control" %>
+          
+            <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          
+            <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class ParentsController < ApplicationController
-  before_action :set_parent, only: [:show, :edit, :update, :destroy]
+  before_action :set_parent, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info]
   before_action :logged_in_parent, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_parent, only: [:edit, :update]
   before_action :admin_teacher, only: :destroy
@@ -47,9 +47,25 @@ class ParentsController < ApplicationController
     redirect_to parents_url
   end
 
+  def edit_manag_info
+  end
+
+  def update_manag_info
+    if @parent.update_attributes(manag_info_params)
+      flash[:success] = "#{@parent.name}の基本情報を更新しました。"
+    else
+      flash[:danger] = "#{@parent.name}の更新は失敗しました。<br>" + @parent.errors.full_messages.join("<br>")
+    end
+    redirect_to users_url
+  end
+
   private
 
       def parent_params
+        params.require(:parent).permit(:name, :email, :child_name, :child_class, :relationship, :password, :password_confirmation)
+      end
+
+      def manag_info_params
         params.require(:parent).permit(:name, :email, :child_name, :child_class, :relationship, :password, :password_confirmation)
       end
 end

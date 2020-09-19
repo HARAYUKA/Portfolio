@@ -19,13 +19,18 @@
     <thead>
       <tr>
         <th><%= Parent.human_attribute_name :name %></th>
+        <th><%= Parent.human_attribute_name :child_class %></th>
+        <th><%= Parent.human_attribute_name :child_name %></th>
       </tr>
     </thead>
 
     <% @parents.each do |parent| %>
       <tr>
         <td><%= link_to parent.name, parent %></td>
+        <td><%= parent.child_class %></td>
+        <td><%= parent.child_name %></td>
         <td>
+          <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
           <%= link_to "削除", parent, method: :delete,
           data: { confirm: "削除してよろしいですか？" },
           class: "btn btn-danger" %>
@@ -35,3 +40,7 @@
   </table>
   <%= will_paginate %>
 </div>
+
+
+<!--モーダルウインドウ表示-->
+<div id="edit-manag-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

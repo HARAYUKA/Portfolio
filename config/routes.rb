@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   delete 'parent/logout', to: 'sessions#parent_destroy'
   delete 'teacher/logout', to: 'sessions#teacher_destroy'
 
-  resources :parents
+  resources :parents do
+    member do
+      get 'edit_manag_info' # 管理者が編集可能な情報
+      patch 'update_manag_info' # 管理者が編集可能な情報の更新
+    end
+  end
 
   resources :teachers
 end
