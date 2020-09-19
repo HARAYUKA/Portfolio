@@ -6,10 +6,9 @@
 <% end %>
 
 <div class="col-md-4 offset-md-8">
-  <p>ユーザー名検索</p>
   <%= form_tag(parents_path, :method => 'get') do %>
     <%= text_field_tag :search %>
-    <%= submit_tag '検索', :name => nil %>
+    <%= submit_tag '項目検索' %>
   <% end %>
 </div>
 
@@ -19,16 +18,20 @@
     <thead>
       <tr>
         <th><%= Parent.human_attribute_name :name %></th>
-        <th><%= Parent.human_attribute_name :child_class %></th>
+        <th><%= Parent.human_attribute_name :relationship %></th>
         <th><%= Parent.human_attribute_name :child_name %></th>
+        <th><%= Parent.human_attribute_name :child_class %></th>
+        <th><%= Parent.human_attribute_name :class_teacher %></th>
       </tr>
     </thead>
 
     <% @parents.each do |parent| %>
       <tr>
         <td><%= link_to parent.name, parent %></td>
-        <td><%= parent.child_class %></td>
+        <td><%= parent.relationship %></td>
         <td><%= parent.child_name %></td>
+        <td><%= parent.child_class %></td>
+        <td><%= parent.class_teacher %></td>
         <td>
           <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
           <%= link_to "削除", parent, method: :delete,

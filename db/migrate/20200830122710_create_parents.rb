@@ -6,6 +6,7 @@ class CreateParents < ActiveRecord::Migration[5.2]
       t.string :child_name
       t.string :child_class
       t.string :relationship
+      t.string :class_teacher
       t.string :password_digest
       t.string :remember_digest
 

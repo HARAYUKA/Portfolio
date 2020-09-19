@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_09_12_130051) do
     t.string "child_name"
     t.string "child_class"
     t.string "relationship"
+    t.string "class_teacher"
     t.string "password_digest"
     t.string "remember_digest"
     t.datetime "created_at", null: false

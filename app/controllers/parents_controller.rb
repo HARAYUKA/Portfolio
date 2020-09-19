@@ -56,7 +56,7 @@ class ParentsController < ApplicationController
     else
       flash[:danger] = "#{@parent.name}の更新は失敗しました。<br>" + @parent.errors.full_messages.join("<br>")
     end
-    redirect_to users_url
+    redirect_to parents_url
   end
 
   private
@@ -66,6 +66,6 @@ class ParentsController < ApplicationController
       end
 
       def manag_info_params
-        params.require(:parent).permit(:name, :email, :child_name, :child_class, :relationship, :password, :password_confirmation)
+        params.require(:parent).permit(:child_class, :class_teacher)
       end
 end

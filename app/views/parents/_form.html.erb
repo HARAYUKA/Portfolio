@@ -14,7 +14,7 @@
   <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん', 'ねこ', 'とら', 'らいおん'], {include_blank: false}, class: "form_control" %>
 
   <%= f.label :relationship, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :relationship, class: "form-control" %>
+  <%= f.select :relationship, ['母', '父', '祖母', '祖父', 'おば', 'おじ'], {include_blank: false},class: "form-control" %>
 
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>
