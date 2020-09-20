@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info]
   before_action :logged_in_teacher, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:edit, :update]
   # before_action :admin_teacher, only: :destroy
@@ -46,9 +46,25 @@ class TeachersController < ApplicationController
     redirect_to teachers_url
   end
 
+  def edit_manag_info
+  end
+
+  def update_manag_info
+    if @teacher.update_attributes(manag_info_params)
+      flash[:success] = "#{@teacher.name}の基本情報を更新しました。"
+    else
+      flash[:danger] = "#{@teacher.name}の更新は失敗しました。<br>" + @parent.errors.full_messages.join("<br>")
+    end
+    redirect_to teachers_url
+  end
+
   private
 
       def teacher_params
-        params.require(:teacher).permit(:name, :email, :password, :password_confirmation)
+        params.require(:teacher).permit(:name, :email, :staff_id, :child_class, :password, :password_confirmation)
+      end
+
+      def manag_info_params
+        params.require(:teacher).permit(:staff_id, :child_class)
       end
 end

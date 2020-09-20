@@ -16,5 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :teachers
+  resources :teachers do
+    member do
+      get 'edit_manag_info' # 管理者が編集可能な情報
+      patch 'update_manag_info' # 管理者が編集可能な情報の更新
+    end
+  end
 end

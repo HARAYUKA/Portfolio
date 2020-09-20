@@ -49,6 +49,6 @@ class Teacher < ApplicationRecord
   # 保育者一覧のsearch
   def self.search(search)
     return Teacher.all unless search
-    Teacher.where(['name LIKE ?', "%#{search}%"])
+    Teacher.where(['name LIKE? OR staff_id LIKE? OR child_class LIKE?', "%#{search}%", "%#{search}%", "%#{search}%"])
   end
 end
