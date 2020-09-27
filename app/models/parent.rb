@@ -1,4 +1,5 @@
 class Parent < ApplicationRecord
+  has_many :children, dependent: :destroy
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
