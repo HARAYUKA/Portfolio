@@ -9,6 +9,7 @@ class CreateParents < ActiveRecord::Migration[5.2]
       t.string :class_teacher
       t.string :password_digest
       t.string :remember_digest
+      t.references :school, foreign_key: true
 
       t.timestamps
     end

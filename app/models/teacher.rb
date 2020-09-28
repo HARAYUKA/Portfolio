@@ -1,4 +1,7 @@
 class Teacher < ApplicationRecord
+  # schoolとの親子関係
+  belongs_to :school
+
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
   before_save { self.email = email.downcase }

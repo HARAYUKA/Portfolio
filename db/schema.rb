@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_135852) do
+ActiveRecord::Schema.define(version: 2020_09_28_144133) do
+
+  create_table "attendances", force: :cascade do |t|
+    t.date "worked_on"
+    t.string "feeling"
+    t.string "toilet"
+    t.string "meal"
+    t.datetime "pick_up"
+    t.string "pick_up_person"
+    t.float "temp"
+    t.time "sleep"
+    t.string "note"
+    t.integer "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_attendances_on_child_id"
+  end
 
   create_table "children", force: :cascade do |t|
     t.string "name"
@@ -32,9 +48,17 @@ ActiveRecord::Schema.define(version: 2020_09_27_135852) do
     t.string "class_teacher"
     t.string "password_digest"
     t.string "remember_digest"
+    t.integer "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_parents_on_email", unique: true
+    t.index ["school_id"], name: "index_parents_on_school_id"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "school_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -44,10 +68,12 @@ ActiveRecord::Schema.define(version: 2020_09_27_135852) do
     t.string "child_class"
     t.string "password_digest"
     t.string "remember_digest"
+    t.integer "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.index ["email"], name: "index_teachers_on_email", unique: true
+    t.index ["school_id"], name: "index_teachers_on_school_id"
   end
 
 end

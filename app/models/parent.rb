@@ -1,5 +1,10 @@
 class Parent < ApplicationRecord
+  # schoolとの親子関係
+  belongs_to :school
+  # childとの親子関係
   has_many :children, dependent: :destroy
+  accepts_nested_attributes_for :children, allow: true
+
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
