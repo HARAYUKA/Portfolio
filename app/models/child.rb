@@ -3,5 +3,5 @@ class Child < ApplicationRecord
   belongs_to :parent
   # attendanceとの子孫関係
   has_many :attendances, dependent: :destroy
-  accepts_nested_attributes_for :attendances, allow: true
+  accepts_nested_attributes_for :attendances
 end

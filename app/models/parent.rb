@@ -3,7 +3,7 @@ class Parent < ApplicationRecord
   belongs_to :school
   # childとの親子関係
   has_many :children, dependent: :destroy
-  accepts_nested_attributes_for :children, allow: true
+  accepts_nested_attributes_for :children
 
   # 「remember_token」という仮想の属性を作成
   attr_accessor :remember_token
