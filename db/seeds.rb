@@ -10,17 +10,17 @@ Teacher.create!(name: "管理者",
              school_id: school_id,
              admin: true)
              
-20.times do |n|
-  name  = Faker::Name.name
-  email = "parent#{n+1}@email.com"
-  password = "password"
-  Parent.create!(name: name,
-               email: email,
-               password: password,
-               password_confirmation: password,
-               school_id: school_id)
-end
-puts '親作成'
+# 20.times do |n|
+#   name  = Faker::Name.name
+#   email = "parent#{n+1}@email.com"
+#   password = "password"
+#   Parent.create!(name: name,
+#                email: email,
+#                password: password,
+#                password_confirmation: password,
+#                school_id: school_id)
+# end
+# puts '親作成'
 
 20.times do |n|
   name  = Faker::Name.name

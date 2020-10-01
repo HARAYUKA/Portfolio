@@ -42,10 +42,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_144133) do
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "child_name"
-    t.string "child_class"
     t.string "relationship"
-    t.string "class_teacher"
     t.string "password_digest"
     t.string "remember_digest"
     t.integer "school_id"

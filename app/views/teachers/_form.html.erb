@@ -7,12 +7,6 @@
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :staff_id, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :staff_id, class: "form-control", disabled: true %>
-
-  <%= f.label :child_class, class: "label-#{yield(:class_text)}" %>
-  <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん', 'ねこ', 'とら', 'らいおん'], {include_blank: false}, class: "form_control", disabled: true %>
-
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>
 
