@@ -3,15 +3,16 @@ ja:
     models:
       parent: 保護者
       teacher: 保育者
+      classroom: クラス
+      child: 子供
+      attendance: 登園内容
     attributes:
         parent:
           id: ID
           name: 名前
           email: メールアドレス
-          child_name: 子供の名前
-          child_class: 子供のクラス
+          phone_number: 電話番号
           relationship: 関係性
-          class_teacher: 担任
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
@@ -21,8 +22,33 @@ ja:
           name: 名前
           email: メールアドレス
           staff_id: 職員ID
-          child_class: 担当クラス
           password: パスワード
           password_confirmation: パスワード再入力
+          created_at: 作成日
+          updated_at: 更新日
+        classroom:
+          id: ID
+          class_name: クラス名
+          class_teacher: 担任
+          created_at: 作成日
+          updated_at: 更新日
+        child:
+          id: ID
+          child_name: 子供の名前
+          birth: 誕生日
+          gender: 性別
+          created_at: 作成日
+          updated_at: 更新日
+        attendance:
+          id: ID
+          worked_on: 日付
+          feeling: 機嫌
+          toilet: 便
+          meal: 食事量
+          pick_up_time: お迎え時間
+          pick_up_person: お迎えの人
+          temp: 体温
+          sleep: 睡眠時間
+          note: 家庭での様子
           created_at: 作成日
           updated_at: 更新日

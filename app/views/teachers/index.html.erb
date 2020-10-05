@@ -19,7 +19,7 @@
       <tr>
         <th><%= Teacher.human_attribute_name :name %></th>
         <th><%= Teacher.human_attribute_name :staff_id %></th>
-        <th><%= Teacher.human_attribute_name :child_class %></th>
+        <th><%= Classroom.human_attribute_name :class_name %></th>
       </tr>
     </thead>
 
@@ -27,7 +27,7 @@
       <tr>
         <td><%= link_to teacher.name, teacher %></td>
         <td><%= teacher.staff_id %></td>
-        <td><%= teacher.child_class %></td>
+        <td><%= classroom.class_name %></td>
         <td>
           <%= link_to "編集", edit_manag_info_teacher_path(teacher), remote: true, class: "btn btn-success" %>
           <%= link_to "削除", teacher, method: :delete,

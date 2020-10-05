@@ -20,10 +20,11 @@ class ParentsController < ApplicationController
   end
 
   def create
-    @school = School.find(1)
-    @parent = @school.parents.new(parent_params)
+    # @school = School.find(1)
+    # @parent = @school.parents.new(parent_params)
+    @parent = Parent.new(parent_params)
     if @parent.save
-      @child = @parent.children.new(name: params[:parent][:child_name], child_class: params[:parent][:child_class])
+      @child = @parent.children.new(child_name: params[:parent][:child_name], child_class: params[:parent][:child_class])
       @child.save
       flash[:success] = '新規作成に成功しました。'
       redirect_to @parent

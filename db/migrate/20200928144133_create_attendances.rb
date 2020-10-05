@@ -5,12 +5,11 @@ class CreateAttendances < ActiveRecord::Migration[5.2]
       t.string :feeling
       t.string :toilet
       t.string :meal
-      t.datetime :pick_up
+      t.datetime :pick_up_time
       t.string :pick_up_person
       t.float :temp
       t.time :sleep
       t.string :note
-
       t.references :child, foreign_key: true
 
       t.timestamps

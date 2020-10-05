@@ -1,6 +1,4 @@
 class Parent < ApplicationRecord
-  # schoolとの親子関係
-  belongs_to :school
   # childとの親子関係
   has_many :children, dependent: :destroy
   accepts_nested_attributes_for :children

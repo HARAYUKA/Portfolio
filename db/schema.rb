@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_144133) do
+ActiveRecord::Schema.define(version: 2020_10_02_052958) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
     t.string "feeling"
     t.string "toilet"
     t.string "meal"
-    t.datetime "pick_up"
+    t.datetime "pick_up_time"
     t.string "pick_up_person"
     t.float "temp"
     t.time "sleep"
@@ -29,48 +29,48 @@ ActiveRecord::Schema.define(version: 2020_09_28_144133) do
   end
 
   create_table "children", force: :cascade do |t|
-    t.string "name"
-    t.string "child_class"
-    t.string "class_teacher"
+    t.string "child_name"
     t.integer "birth"
+    t.integer "gender"
     t.integer "parent_id"
+    t.integer "classroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_children_on_classroom_id"
     t.index ["parent_id"], name: "index_children_on_parent_id"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "class_name"
+    t.string "class_teacher"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "parents", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "phone_number"
     t.string "relationship"
     t.string "password_digest"
     t.string "remember_digest"
-    t.integer "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_parents_on_email", unique: true
-    t.index ["school_id"], name: "index_parents_on_school_id"
-  end
-
-  create_table "schools", force: :cascade do |t|
-    t.string "school_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.integer "staff_id"
-    t.string "child_class"
     t.string "password_digest"
     t.string "remember_digest"
-    t.integer "school_id"
+    t.integer "classroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.index ["classroom_id"], name: "index_teachers_on_classroom_id"
     t.index ["email"], name: "index_teachers_on_email", unique: true
-    t.index ["school_id"], name: "index_teachers_on_school_id"
   end
 
 end
