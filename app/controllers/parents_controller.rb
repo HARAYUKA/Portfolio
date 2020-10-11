@@ -24,8 +24,6 @@ class ParentsController < ApplicationController
     # @parent = @school.parents.new(parent_params)
     @parent = Parent.new(parent_params)
     if @parent.save
-      @child = @parent.children.new(child_name: params[:parent][:child_name], child_class: params[:parent][:child_class])
-      @child.save
       flash[:success] = '新規作成に成功しました。'
       redirect_to @parent
     else
@@ -66,7 +64,7 @@ class ParentsController < ApplicationController
   private
 
       def parent_params
-        params.require(:parent).permit(:name, :email, :relationship, :password, :password_confirmation)
+        params.require(:parent).permit(:name, :email, :phone_number, :password, :password_confirmation)
       end
 
       def manag_info_params

@@ -7,14 +7,8 @@
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :child_name, class: "form-control" %>
-
-  <%= f.label :child_class, class: "label-#{yield(:class_text)}" %>
-  <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん', 'ねこ', 'とら', 'らいおん'], {include_blank: false}, class: "form_control" %>
-
-  <%= f.label :relationship, class: "label-#{yield(:class_text)}" %>
-  <%= f.select :relationship, ['母', '父', '祖母', '祖父', 'おば', 'おじ'], {include_blank: false}, class: "form-control" %>
+  <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %>
+  <%= f.phone_field :phone_number, class: "form-control" %>
 
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>

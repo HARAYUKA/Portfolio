@@ -4,11 +4,12 @@
   <head>
     <title><%= yield(:title) %> | えんアプリ</title>
   </head>
-  <div class="center jumbotron jumbotron-extend">
-    <div class="container-fluid">
-      <h1>連絡帳アプリ</h1>
-        園・保育者の方は<%= link_to "こちら", teacher_login_path, class: "btn btn-md btn-primary" %><br>
-        保護者の方は<%= link_to "こちら", parent_login_path, class: "btn btn-md btn-primary" %>
+  <body>
+    <h1>連絡帳アプリ</h1>
+    <h3>保育者・園児・保護者をつなぐ架け橋に</h3>
+    <div class="top-login">
+      <%= link_to raw("園・保育者の方<br/>はコチラ"), teacher_login_path, class: "btn btn--orange btn--circle" %>
+      <%= link_to "保護者", parent_login_path, class: "btn btn--yellow btn--circle" %>
     </div>
-  </div>
+  </body>
 </html>

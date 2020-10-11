@@ -2,13 +2,46 @@
 
 /* universal */
 
-.jumbotron-extend{
-  background-image: url('top.jpg');
-  background-size: cover;
-  background-position: center 60%;
-}
+/* トップページ */
 
 body {
+  background-image: url('top.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.top-login{
+  text-align: center;
+}
+
+.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+
+.btn--yellow {
+  color: #fff;
+  background-color: #e6d900;
+}
+
+.btn--circle {
+  border-radius: 50%;
+  line-height: 100px;
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  margin-right: 20px;
+  margin-left: 20px;
+  position: relative;
+}
+
+.btn--circle:hover {
+  -webkit-transform: translate(0, 3px);
+  transform: translate(0, 3px);
+  -webkit-box-shadow: 0 2px 0 #e6d900;
+  box-shadow: 0 2px 0 #e6d900;
 }
 
 section {
@@ -44,6 +77,14 @@ h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+h3 {
+  margin-top: 60px;
+  margin-bottom: 60px;
   text-align: center;
   font-weight: normal;
   color: #777;

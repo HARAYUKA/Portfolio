@@ -30,9 +30,9 @@
       <tr>
         <td><%= link_to parent.name, parent %></td>
         <td><%= parent.relationship %></td>
-        <td><%= child.name %></td>
-        <td><%= child.child_class %></td>
-        <td><%= child.class_teacher %></td>
+        <td><%= child.child_name %></td>
+        <td><%= classroom.class_name %></td>
+        <td><%= classroom.class_teacher %></td>
         <td>
           <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
           <%= link_to "削除", parent, method: :delete,
