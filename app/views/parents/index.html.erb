@@ -19,20 +19,23 @@
       <tr>
         <th><%= Parent.human_attribute_name :name %></th>
         <th><%= Parent.human_attribute_name :relationship %></th>
-        <th><%= Child.human_attribute_name :name %></th>
-        <th><%= Child.human_attribute_name :child_class %></th>
-        <th><%= Child.human_attribute_name :class_teacher %></th>
+        <th><%= Child.human_attribute_name :child_name %></th>
+        <th><%= Classroom.human_attribute_name :class_name %></th>
+        <th><%= Classroom.human_attribute_name :class_teacher %></th>
       </tr>
     </thead>
 
     <% @parents.each do |parent| %>
-      <% child = Child.find_by(parent_id: parent.id) %>
+      <% children = Child.where(parent_id: parent.id) %>
       <tr>
         <td><%= link_to parent.name, parent %></td>
         <td><%= parent.relationship %></td>
-        <td><%= child.child_name %></td>
-        <td><%= classroom.class_name %></td>
-        <td><%= classroom.class_teacher %></td>
+        <% children.each do |child| %>
+          <td><%= child.child_name %></td>
+          <% classroom = Classroom.find(child.classroom_id) %>
+          <td><%= classroom.class_name %></td>
+          <td><%= classroom.class_teacher %></td>
+        <% end %>
         <td>
           <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
           <%= link_to "削除", parent, method: :delete,
