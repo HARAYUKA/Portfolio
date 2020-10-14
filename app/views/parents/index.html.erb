@@ -21,7 +21,6 @@
         <th><%= Parent.human_attribute_name :relationship %></th>
         <th><%= Child.human_attribute_name :child_name %></th>
         <th><%= Classroom.human_attribute_name :class_name %></th>
-        <th><%= Classroom.human_attribute_name :class_teacher %></th>
       </tr>
     </thead>
 
@@ -32,9 +31,8 @@
         <td><%= parent.relationship %></td>
         <% children.each do |child| %>
           <td><%= child.child_name %></td>
-          <% classroom = Classroom.find(child.classroom_id) %>
+        <% classroom = Classroom.find(child.classroom_id) %>
           <td><%= classroom.class_name %></td>
-          <td><%= classroom.class_teacher %></td>
         <% end %>
         <td>
           <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>

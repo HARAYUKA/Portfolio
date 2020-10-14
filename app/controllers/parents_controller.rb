@@ -15,10 +15,12 @@ class ParentsController < ApplicationController
   def show
   end
 
+  # 親ユーザー作成
   def new
     @parent = Parent.new
   end
 
+  # 親ユーザー追加
   def create
     # @school = School.find(1)
     # @parent = @school.parents.new(parent_params)
@@ -29,6 +31,16 @@ class ParentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  # 園児作成モーダル表示
+  def add_new_child
+    @child = Child.new
+  end
+
+  # 園児作成モーダルでの園児追加
+  def create_new_child
+    @child = Child.new(child_params)
   end
 
   def edit

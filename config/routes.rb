@@ -14,6 +14,12 @@ Rails.application.routes.draw do
       get 'edit_manag_info' # 管理者が編集可能な情報
       patch 'update_manag_info' # 管理者が編集可能な情報の更新
     end
+    resources :children, only: :update do
+      collection do
+        get 'add_new_child' # 園児追加モーダル表示
+        patch 'create_new_child' # 園児追加モーダル更新
+      end
+    end
   end
 
   resources :teachers do

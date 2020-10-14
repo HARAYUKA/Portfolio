@@ -1,5 +1,35 @@
 <% provide(:title, @parent.name) %>
+<h1>園児情報</h1>
+
+<!--園児登録ボタン-->
+<div class="btn-parents-show">
+  <%= link_to "園児情報追加", "#", class: "btn btn-primary" %>
+</div>
+
+<!--子供情報テーブル-->
+<div>
+  <table class="table table-bordered table-striped table-condensed">
+    <tr>
+      <td>名前</td>
+      <td>年齢</td>
+      <td>誕生日</td>
+      <td>性別</td>
+      <td>クラス</td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+
 <!--登園内容概要テーブル-->
+<h1>登園情報一覧</h1>
 <div>
   <table class="table table-bordered table-striped table-condensed parent-table">
     <tr>

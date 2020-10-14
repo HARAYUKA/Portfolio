@@ -35,7 +35,8 @@ ja:
         child:
           id: ID
           child_name: 子供の名前
-          birth: 誕生日
+          age: 年齢
+          birthday: 誕生日
           gender: 性別
           created_at: 作成日
           updated_at: 更新日
