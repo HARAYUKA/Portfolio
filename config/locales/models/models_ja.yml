@@ -34,7 +34,7 @@ ja:
           updated_at: 更新日
         child:
           id: ID
-          child_name: 子供の名前
+          child_name: 園児名
           age: 年齢
           birthday: 誕生日
           gender: 性別

@@ -1,0 +1,46 @@
+<% provide(:class_text, 'new-child') %>
+<% provide(:button_text, '更新') %>
+
+<div class="modal-dialog modal-lg modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title">園児情報追加</h1>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <%= form_with(model: @child, url:create_new_child_parent_children_url(@parent), local: true) do |f| %>
+            <%= render 'shared/error_messages', object: @child %>
+
+            <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>
+            <%= f.text_field :child_name, class: "form-control" %>
+
+            <%= f.label :age, class: "label-#{yield(:class_text)}" %>
+            <%= f.email_field :age, class: "form-control" %>
+
+            <%= f.label :birthday, class: "label-#{yield(:class_text)}" %><br>
+            <%= f.date_select(
+                :birth,
+                start_year: 2010,
+                end_year: (Time.now.year),
+                default: Date.new(2020, 1, 1),
+                date_separator: '/') %><br>
+
+            <%= f.label :class_name, class: "label-#{yield(:class_text)}" %>
+            <%= f.password_field :class_name, class: "form-control" %>
+
+            <div class="center">
+              <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
+              <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-dismiss="modal">
+                キャンセル
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

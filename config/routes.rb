@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'children/new'
   root 'home#top'
 
   # ログイン機能
