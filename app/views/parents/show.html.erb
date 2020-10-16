@@ -3,7 +3,7 @@
 
 <!--園児登録ボタン-->
 <div class="btn-parents-show">
-  <%= link_to "園児情報追加", add_new_child_parent_children_path(@parent), remote: true, class: "btn btn-primary" %>
+  <%= link_to "園児情報追加", children_new_parent_children_path(@parent), remote: true, class: "btn btn-primary" %>
 </div>
 
 <!--子供情報テーブル-->
@@ -107,4 +107,4 @@
   </table>
 </div>
 
-<div id="add-new-child" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

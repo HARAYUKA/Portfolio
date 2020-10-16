@@ -38,6 +38,7 @@ ja:
           age: 年齢
           birthday: 誕生日
           gender: 性別
+          class_name: クラス名 # ここ要るかな？
           created_at: 作成日
           updated_at: 更新日
         attendance:

@@ -1,19 +1,20 @@
 class ChildrenController < ApplicationController
   # 園児作成モーダル表示
-  def add_new_child
+  def new
     @parent = Parent.find(params[:parent_id])
     @child = Child.new
   end
 
   # 園児作成モーダルでの園児追加
-  def create_new_child
+  def create
     @parent = Parent.find(params[:parent_id])
     @child = Child.new(child_params)
     if @child.save
       flash[:success] = '子供を追加しました。'
       redirect_to @parent
     else
-      render :show
+      flash[:danger] = '登録できませんでした。'
+      render 'parents/show'
     end
   end
 

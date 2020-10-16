@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'children/new'
   root 'home#top'
 
   # ログイン機能
@@ -17,8 +16,8 @@ Rails.application.routes.draw do
     end
     resources :children, only: :update do
       collection do
-        get 'add_new_child' # 園児追加モーダル表示
-        patch 'create_new_child' # 園児追加モーダル更新
+        get 'children/new' # 園児追加モーダル表示
+        post 'create' # 園児追加モーダル更新
       end
     end
   end

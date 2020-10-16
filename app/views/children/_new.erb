@@ -1,5 +1,5 @@
 <% provide(:class_text, 'new-child') %>
-<% provide(:button_text, '更新') %>
+<% provide(:button_text, '登録') %>
 
 <div class="modal-dialog modal-lg modal-dialog-center">
   <div class="modal-content">
@@ -12,7 +12,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <%= form_with(model: @child, url:create_new_child_parent_children_url(@parent), local: true) do |f| %>
+          <%= form_with(model: @child, url: parent_children_path(@parent), local: true) do |f| %>
             <%= render 'shared/error_messages', object: @child %>
 
             <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>
