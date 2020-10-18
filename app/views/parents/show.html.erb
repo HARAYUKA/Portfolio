@@ -8,22 +8,24 @@
 
 <!--子供情報テーブル-->
 <div>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-striped table-condensed table-children">
     <tr>
-      <td>名前</td>
-      <td>年齢</td>
-      <td>誕生日</td>
-      <td>性別</td>
-      <td>クラス</td>
+      <th>名前</th>
+      <th>年齢</th>
+      <th>誕生日</th>
+      <th>性別</th>
+      <th>クラス</th>
     </tr>
 
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+    <% @children.each do |c| %>
+      <tr>
+        <td><%= c.child_name %></td>
+        <td><%= c.age %></td>
+        <td><%= c.birthday %></td>
+        <td><%= c.gender %></td>
+        <td><%= Classroom.find(c.classroom_id).class_name %></td>
+      </tr>
+    <% end %>
   </table>
 </div>
 
@@ -33,10 +35,10 @@
 <div>
   <table class="table table-bordered table-striped table-condensed parent-table">
     <tr>
-      <td>登園月</td>
-      <td>クラス</td>
-      <td>園児名</td>
-      <td>登園日数</td>
+      <th>登園月</th>
+      <th>クラス</th>
+      <th>園児名</th>
+      <th>登園日数</th>
     </tr>
 
     <tr>

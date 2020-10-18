@@ -13,6 +13,7 @@ class ParentsController < ApplicationController
   end
 
   def show
+    @children = @parent.children
   end
 
   # 親ユーザー作成
@@ -26,28 +27,11 @@ class ParentsController < ApplicationController
     # @parent = @school.parents.new(parent_params)
     @parent = Parent.new(parent_params)
     if @parent.save
+      log_in_parent @parent
       flash[:success] = '新規作成に成功しました。'
       redirect_to @parent
     else
       render :new
-    end
-  end
-
-  # 園児作成モーダル表示
-  def add_new_child
-    @parent = Parent.find(params[:parent_id])
-    @child = Child.new
-  end
-
-  # 園児作成モーダルでの園児追加
-  def create_new_child
-    @parent = Parent.find(params[:parent_id])
-    @child = Child.new(child_params)
-    if @child.save
-      flash[:success] = '子供を追加しました。'
-      redirect_to @parent
-    else
-      render :show
     end
   end
 
@@ -88,6 +72,6 @@ class ParentsController < ApplicationController
       end
 
       def manag_info_params
-        params.require(:parent).permit(:child_class, :class_teacher)
+        params.require(:parent).permit(:child_class)
       end
 end

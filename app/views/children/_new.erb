@@ -23,14 +23,20 @@
 
             <%= f.label :birthday, class: "label-#{yield(:class_text)}" %><br>
             <%= f.date_select(
-                :birth,
+                :birthday,
                 start_year: 2010,
                 end_year: (Time.now.year),
                 default: Date.new(2020, 1, 1),
                 date_separator: '/') %><br>
+                <!-- #date_fieldでカッコよくできる -->
+
+            <%= f.radio_button :gender, :man %>
+            <%= f.label :gender, "男", {value: :man, style: "display: inline-block;"} %>
+            <%= f.radio_button :gender, :woman %>
+            <%= f.label :gender, "女", {value: :woman, style: "display: inline-block;"} %><br>
 
             <%= f.label :class_name, class: "label-#{yield(:class_text)}" %>
-            <%= f.password_field :class_name, class: "form-control" %>
+            <%= f.collection_select :classroom_id, @classrooms, :id, :class_name, class: "form-control" %>
 
             <div class="center">
               <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>

@@ -21,6 +21,7 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
+      log_in_teacher @teacher
       flash[:success] = '新規作成に成功しました。'
       redirect_to @teacher
     else
