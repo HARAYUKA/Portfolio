@@ -102,10 +102,6 @@ p {
   background-color: #ffa500;
 }
 
-// a.nav navbar-expand-lg{
-//   color: #fff;
-// }
-
 #logo {
   float: left;
   margin-right: 10px;
@@ -198,6 +194,15 @@ p {
   text-align: center;
 }
 
-.table-children {
+/* 子供情報テーブル */
+#table-children {
   background-color: rgba(235, 126, 25, 0.5);
+  th {
+    vertical-align: middle;
+    text-align: center;
+  }
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
 }

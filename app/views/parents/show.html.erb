@@ -3,110 +3,37 @@
 
 <!--園児登録ボタン-->
 <div class="btn-parents-show">
-  <%= link_to "園児情報追加", children_new_parent_children_path(@parent), remote: true, class: "btn btn-primary" %>
+  <%= link_to "園児追加", new_parent_child_path(@parent), remote: true, class: "btn btn-primary" %>
 </div>
 
 <!--子供情報テーブル-->
 <div>
-  <table class="table table-bordered table-striped table-condensed table-children">
+  <table class="table table-bordered table-striped table-condensed" id="table-children">
     <tr>
+      <th>登園予定登録</th>
       <th>名前</th>
       <th>年齢</th>
       <th>誕生日</th>
       <th>性別</th>
       <th>クラス</th>
+      <th></th>
     </tr>
 
     <% @children.each do |c| %>
       <tr>
+        <td><%= link_to "登園予定登録", '#', remote: true, class: "btn btn-primary" %></td>
         <td><%= c.child_name %></td>
         <td><%= c.age %></td>
         <td><%= c.birthday %></td>
         <td><%= c.gender %></td>
         <td><%= Classroom.find(c.classroom_id).class_name %></td>
+        <td>
+          <%= link_to "編集", edit_parent_child_path(@parent, @child), remote: true, class: "btn btn-success" %>
+        </td>
       </tr>
     <% end %>
   </table>
 </div>
 
-
-<!--登園内容概要テーブル-->
-<h1>登園情報一覧</h1>
-<div>
-  <table class="table table-bordered table-striped table-condensed parent-table">
-    <tr>
-      <th>登園月</th>
-      <th>クラス</th>
-      <th>園児名</th>
-      <th>登園日数</th>
-    </tr>
-
-    <tr>
-      <td>
-        <%= link_to "⬅︎ ", '#', class: "btn btn-info-small" %>
-        <%= link_to " ➡︎︎", '#', class: "btn btn-info-small" %>
-      </td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </table>
-</div>
-
-<!--登園内容一覧テーブル-->
-<div>
-  <table class="table table-bordered table-striped table-condensed table-hover" id="table-attcontents">
-    <thead>
-      <tr>
-        <th rowspan="3"></th>
-        <th rowspan="3"></th>
-        <th rowspan="3"></th>
-        <th colspan="8"></th>
-        <th colspan="5"></th>
-      </tr>
-      <tr>
-        <th colspan="3"></th>
-        <th colspan="3"></th>
-        <th rowspan="2"></th>
-        <th rowspan="2"></th>
-        <th colspan="2"></th>
-        <th rowspan="2"></th>
-        <th rowspan="2"></th>
-        <th rowspan="2"></th>
-      </tr>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-    </tbody>
-  </table>
-</div>
-
 <div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
