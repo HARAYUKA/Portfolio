@@ -19,16 +19,16 @@
       <th></th>
     </tr>
 
-    <% @children.each do |c| %>
+    <% @children.each do |child| %>
       <tr>
         <td><%= link_to "登園予定登録", '#', remote: true, class: "btn btn-primary" %></td>
-        <td><%= c.child_name %></td>
-        <td><%= c.age %></td>
-        <td><%= c.birthday %></td>
-        <td><%= c.gender %></td>
-        <td><%= Classroom.find(c.classroom_id).class_name %></td>
+        <td><%= child.child_name %></td>
+        <td><%= child.age %></td>
+        <td><%= child.birthday %></td>
+        <td><%= child.gender %></td>
+        <td><%= Classroom.find(child.classroom_id).class_name %></td>
         <td>
-          <%= link_to "編集", edit_parent_child_path(@parent, @child), remote: true, class: "btn btn-success" %>
+          <%= link_to "編集", edit_parent_child_path(@parent, child), remote: true, class: "btn btn-success" %>
         </td>
       </tr>
     <% end %>

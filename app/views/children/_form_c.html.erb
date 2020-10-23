@@ -22,7 +22,12 @@
   <%= f.label :gender, "女", {value: :woman, style: "display: inline-block;"} %><br>
 
   <%= f.label :class_name, class: "label-#{yield(:class_text)}" %>
-  <%= f.collection_select :classroom_id, @classrooms, :id, :class_name, include_blank: true, class: "form-control" %>
+  <% if @classrooms.count > 1 %>
+    <%= f.collection_select :classroom_id, @classrooms, :id, :class_name, class: "form-control" %>
+  <% else %>
+    <%= @classrooms[0][:class_name] %>
+  <% end %>
+
 
   <div class="center">
     <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>

@@ -1,12 +1,12 @@
 class ChildrenController < ApplicationController
-  # 園児作成モーダル表示
+  # 園児追加モーダル表示
   def new
     @parent = Parent.find(params[:parent_id])
     @child = @parent.children.new
     @classrooms = Classroom.all
   end
 
-  # 園児作成モーダルでの園児追加
+  # 園児追加モーダルでの園児作成
   def create
     @parent = Parent.find(params[:parent_id])
     @child = @parent.children.new(child_params)
@@ -22,11 +22,20 @@ class ChildrenController < ApplicationController
   # 園児情報編集モーダル
   def edit
     @parent = Parent.find(params[:parent_id])
-    @child = @parent.children
+    @child = @parent.children.find(params[:id])
+    @classrooms = Classroom.where(id: @child.classroom_id)
   end
 
   # 園児情報編集モーダル更新
   def update
+    @parent = Parent.find(params[:parent_id])
+    @child = @parent.children.find(params[:id])
+    if @children.update_attributes(child_params)
+      flash[:success] = "園児情報を更新しました。"
+      redirect_to @parent
+    else
+      render :edit 
+    end
   end
 
   private
