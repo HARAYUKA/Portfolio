@@ -12,7 +12,39 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-        <%= render 'form_c' %>
+          <%= form_with(model: @child, url: parent_child_path(@parent), local: true, method: :patch) do |f| %>
+            <%= render 'shared/error_messages', object: @child %>
+          
+            <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>
+            <%= f.text_field :child_name, class: "form-control" %>
+          
+            <%= f.label :age, class: "label-#{yield(:class_text)}" %>
+            <%= f.number_field :age, class: "form-control", min: 0, max: 5 %>
+          
+            <%= f.label :birthday, class: "label-#{yield(:class_text)}" %><br>
+            <%= f.date_select :birthday,
+                {start_year: 2010,
+                end_year: (Time.now.year),
+                default: Date.new(2020, 1, 1),
+                use_month_numbers: true,
+                date_separator: '/'} %><br>
+                <!-- #date_fieldでカッコよくできる -->
+          
+            <%= f.radio_button :gender, :man %>
+            <%= f.label :gender, "男", {value: :man, style: "display: inline-block;"} %>
+            <%= f.radio_button :gender, :woman %>
+            <%= f.label :gender, "女", {value: :woman, style: "display: inline-block;"} %><br>
+          
+            <%= f.label :class_name, class: "label-#{yield(:class_text)}" %>
+            <%= @classrooms[0][:class_name] %>
+
+            <div class="center">
+              <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
+              <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-dismiss="modal">
+                キャンセル
+              </button>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
