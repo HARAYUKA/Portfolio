@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'rails', '~> 5.2.3'
 gem 'rails-i18n'
+gem 'enum_help'
 gem 'sqlite3'
 gem 'puma', '~> 3.11'
 gem 'faker'

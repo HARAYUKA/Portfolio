@@ -38,6 +38,12 @@ class ChildrenController < ApplicationController
     end
   end
 
+  # 園児情報詳細画面
+  def show
+    @parent = Parent.find(params[:parent_id])
+    @child = @parent.children.find(params[:id])
+  end
+
   private
 
     def child_params

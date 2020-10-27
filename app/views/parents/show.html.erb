@@ -1,16 +1,15 @@
 <% provide(:title, @parent.name) %>
-<h1>園児情報</h1>
+<h1>園児情報一覧</h1>
 
 <!--園児登録ボタン-->
 <div class="btn-parents-show">
   <%= link_to "園児新規追加", new_parent_child_path(@parent), remote: true, class: "btn btn-info" %>
 </div>
 
-<!--子供情報テーブル-->
+<!--園児一覧テーブル-->
 <div>
-  <table class="table table-bordered table-striped table-condensed" id="table-children">
+  <table class="table table-bordered table-striped table-condensed" id="index-children">
     <tr>
-      <th>登園予定登録</th>
       <th>名前</th>
       <th>年齢</th>
       <th>誕生日</th>
@@ -21,8 +20,7 @@
 
     <% @children.each do |child| %>
       <tr>
-        <td><%= link_to "登園予定登録", '#', remote: true, class: "btn btn-primary" %></td>
-        <td><%= child.child_name %></td>
+        <td><%= link_to child.child_name, parent_child_path(@parent, child) %></td>
         <td><%= child.age %></td>
         <td><%= child.birthday %></td>
         <td><%= child.gender %></td>
