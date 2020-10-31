@@ -3,11 +3,41 @@
 
 <!--園児詳細テーブル-->
 <div>
-  <table class="table table-bordered table-striped table-condensed" id="show-children">
+  <table class="table table-bordered table-striped table-condensed" id="index-children">
     <tr>
       <td>
-        <%= link_to "前日", '#', class: "btn btn-info-small" %>
-        
-  
+        <%= link_to " 本日 ", parent_child_path(@parent, @child, date: Date.today), class: "btn btn-primary" %>
+        <%= link_to "< 前日", parent_child_path(@parent, @child, date: @day.yesterday), class: "btn btn-info-small" %>
+        <b><%= l(@day, format: :long)%></b>
+        <%= link_to "翌日 >", parent_child_path(@parent, @child, date: @day.tomorrow), class: "btn btn-info-small" %>
+      </td>
+    </tr>
+    <tr>
+      <th>登園予定</th>
+        <td>登園予定・欠席</td>
+    </tr>
+    <tr>
+      <th>登園予定時間</th>
+        <td></td>
+      <th>お迎え予定時間</th>
+        <td></td>
+    </tr>
+    <tr>
+      <th>お迎えの方</th>
+        <td></td>
+    </tr>
+    <tr>
+      <th>ご機嫌</th>
+        <td></td>
+    </tr>
+    <tr>
+      <th>体温</th>
+        <td></td>
+    </tr>
+    <tr>
+      <th>食事</th>
+        <td>夕食時間</td>
+        <td>夕食の量</td>
+    </tr>
   </table>
 </div>
