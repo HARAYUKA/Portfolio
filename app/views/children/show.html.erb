@@ -3,9 +3,9 @@
 
 <!--園児詳細テーブル-->
 <div>
-  <table class="table table-bordered table-striped table-condensed" id="index-children">
+  <table class="table table-bordered table-striped table-condensed" id="show-children">
     <tr>
-      <td>
+      <th colspan="6">
         <%= link_to " 本日 ", parent_child_path(@parent, @child, date: Date.today), class: "btn btn-primary" %>
         <%= link_to "< 前日", parent_child_path(@parent, @child, date: @day.yesterday), class: "btn btn-info-small" %>
         <b><%= l(@day, format: :long)%></b>
@@ -13,31 +13,88 @@
       </td>
     </tr>
     <tr>
-      <th>登園予定</th>
-        <td>登園予定・欠席</td>
+      <th colspan="6", class="first">登園基本情報</th>
+    </tr>
+    <tr>
+      <td colspan="6">登園予定・欠席</td>
     </tr>
     <tr>
       <th>登園予定時間</th>
         <td></td>
       <th>お迎え予定時間</th>
         <td></td>
-    </tr>
-    <tr>
       <th>お迎えの方</th>
         <td></td>
     </tr>
     <tr>
       <th>ご機嫌</th>
         <td></td>
-    </tr>
-    <tr>
       <th>体温</th>
-        <td></td>
+        <td colspan="3"></td>
     </tr>
     <tr>
-      <th>食事</th>
-        <td>夕食時間</td>
-        <td>夕食の量</td>
+      <th colspan="6", class="first">食事</th>
+    </tr>
+    <tr>
+      <th>夕食時間</th>
+        <td colspan="3"></td>
+      <th>食べた量</th>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th>朝食時間</th>
+        <td colspan="3"></td>
+      <th>食べた量</th>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th>おやつ①</th>
+        <td colspan="3"></td>
+      <th>食べた量</th>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th>おやつ②</th>
+        <td colspan="3"></td>
+      <th>食べた量</th>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th>排便時間</th>
+        <td colspan="3"></td>
+      <th>便の状況</th>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">睡眠</th>
+    </tr>
+    <tr>
+      <th>就寝時間</th>
+        <td colspan="3"></td>
+      <th>お昼寝時間</th>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">園児の様子</th>
+    </tr>
+    <tr>
+      <th>家庭での様子</th>
+        <td colspan="5"></td>
+    </tr>
+    <tr>
+      <th>園での様子</th>
+        <td colspan="5"></td>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">連絡事項</th>
+    </tr>
+    <tr>
+      <th>家庭からの連絡事項</th>
+        <td colspan="5"></td>
+    </tr>
+    <tr>
+      <th>園からの連絡事項</th>
+        <td colspan="5"></td>
     </tr>
   </table>
 </div>
