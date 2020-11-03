@@ -70,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
+  margin-top: 30px;
   margin-bottom: 30px;
   text-align: center;
 }
@@ -99,7 +100,8 @@ p {
 /* header */
 
 .navbar{
-  background-color: #ffa500;
+  background-color: rgba(255, 165, 25, 0.7);
+  // background-color: #ffa500;
 }
 
 #logo {
@@ -179,6 +181,7 @@ p {
 /* ユーザー一覧ページ */
 
 #table-users {
+  background-color: rgba(255, 165, 25, 0.7);
   td {
     vertical-align: middle;
   }  
@@ -202,7 +205,8 @@ p {
 
 /* 園児一覧テーブル */
 #index-children {
-  background-color: rgba(235, 126, 25, 0.5);
+  // background-color: rgba(235, 126, 25, 0.5);
+  background-color: rgba(255, 165, 25, 0.6);
   th {
     vertical-align: middle;
     text-align: center;

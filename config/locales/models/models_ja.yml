@@ -44,14 +44,30 @@ ja:
         attendance:
           id: ID
           worked_on: 日付
-          feeling: 機嫌
-          toilet: 便
-          meal: 食事量
+          status_attendance: 登園基本情報
+          attendance_time: 登園予定時間
           pick_up_time: お迎え時間
-          pick_up_person: お迎えの人
+          pick_up_person: お迎えの方
+          feeling: ご機嫌
           temp: 体温
-          sleep: 睡眠時間
-          note: 家庭での様子
+          dinner_time: 夕食時間
+          amount_dinner: 夕食量
+          morning_time: 朝食時間
+          amount_morning: 朝食量
+          lunch_time: 昼食時間
+          amount_lunch: 昼食量
+          first_snack: おやつ①
+          amount_1_snack: 食べた量
+          second_snack: おやつ②
+          amount_2_snack: 食べた量
+          toilet_time: 排便時間
+          toilet_status: 便の状況
+          night_sleep: 就寝時間
+          afternoon_sleep: お昼寝時間
+          status_at_home: 家庭での様子
+          status_at_school: 園での様子
+          info_from_home: 家庭からの連絡事項
+          info_from_school: 園からの連絡事項
           created_at: 作成日
           updated_at: 更新日
   enums:
