@@ -49,12 +49,20 @@ class ChildrenController < ApplicationController
     else
       @day = params[:date].to_date
     end
+    unless find_attendance?
+      @attendance = @child.attendances.create # @attendanceにデータがなかった場合に新規でデータ作成
+    end
   end
 
   private
 
     def child_params
       params.require(:child).permit(:child_name, :age, :birthday, :gender, :classroom_id)
+    end
+
+    # @attendanceにデータがあるかどうか
+    def find_attendance?
+      @attendance = @child.attendances.find_by(worked_on: @day)
     end
 
 end
