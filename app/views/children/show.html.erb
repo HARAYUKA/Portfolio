@@ -3,7 +3,7 @@
 
 <!--園児詳細テーブル-->
 <div>
-  <%= form_with(model: @attendance, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch) do |f| %>
+  <%= form_with(model: @child, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch) do |f| %>
     <table class="table table-bordered table-striped table-condensed" id="show-children">
       <tr>
         <th colspan="6">
@@ -21,9 +21,9 @@
       </tr>
       <tr>
         <th>登園予定時間</th>
-          <td><%= f.time_select :attendance_time, minute_step: 15, class: "form_control" %></td>
+          <td><%= f.time_select :attendance_time, :default => {:hour => '8', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
         <th>お迎え予定時間</th>
-          <td><%= f.time_select :pick_up_time, minute_step: 15, class: "form_control" %></td>
+          <td><%= f.time_select :pick_up_time, :default => {:hour => '17', :minute => '00'}, :minute_step => 15, class: "form_control" %></td>
         <th>お迎えの方</th>
           <td><%= f.select :pick_up_person, ['母', '父', '祖母', '祖父', 'おば', 'おじ'], {include_blank: false}, class: "form-control" %></td>
       </tr>
@@ -38,76 +38,85 @@
       </tr>
       <tr>
         <th>夕食時間</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.time_select :dinner_time, :default => {:hour => '18', :minute => '00'}, :minute_step => 15, class: "form_control" %></td>
         <th>夕食量</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.select :amount_dinner, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
       </tr>
       <tr>
         <th>朝食時間</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.time_select :morning_time, :default => {:hour => '7', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
         <th>朝食量</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.select :amount_morning, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
       </tr>
       <tr>
         <th>おやつ①</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.time_select :first_snack, :default => {:hour => '9', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
         <th>食べた量</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.select :amount_1_snack, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
       </tr>
       <tr>
         <th>昼食時間</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.time_select :lunch_time, :default => {:hour => '11', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
         <th>昼食量</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.select :amount_lunch, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
       </tr>
       <tr>
         <th>おやつ②</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.time_select :second_snack, :default => {:hour => '15', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
         <th>食べた量</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.select :amount_2_snack, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
       </tr>
       <tr>
-        <th>排便時間</th>
-          <td colspan="3"></td>
+        <th>排便</th>
+          <td colspan="3">
+            <%= f.time_select :toilet_time, minute_step: 15, class: "form_control" %>
+            <p style="color:red; font-size:80%">※無の場合は00表示
+          </td>
         <th>便の状況</th>
-          <td colspan="3"></td>
+          <td colspan="3"><%= f.select :toilet_status, ['普通', '硬め', '柔らかめ'], {include_blank: false}, class: "form-control" %></td>
       </tr>
       <tr>
         <th colspan="6", class="first">睡眠</th>
       </tr>
       <tr>
         <th>就寝時間</th>
-          <td colspan="3"></td>
+          <td colspan="3">
+            <%= f.time_select :start_night_sleep, :default => {:hour => '20', :minute => '30'}, :minute_step => 15, class: "form_control" %> 〜
+            <%= f.time_select :end_night_sleep, :default => {:hour => '7', :minute => '00'}, :minute_step => 15, class: "form_control" %>
+          </td>
         <th>お昼寝時間</th>
-          <td colspan="3"></td>
+          <td colspan="3">
+            <%= f.time_select :start_afternoon_sleep, :default => {:hour => '12', :minute => '30'}, :minute_step => 15, class: "form_control" %> 〜
+            <%= f.time_select :end_afternoon_sleep, :default => {:hour => '13', :minute => '30'}, :minute_step => 15, class: "form_control" %>
+          </td>
       </tr>
       <tr>
         <th colspan="6", class="first">園児の様子</th>
       </tr>
       <tr>
         <th>家庭での様子</th>
-          <td colspan="5"></td>
+          <td colspan="5"><%= f.text_area :status_at_home, class: "form_control" %></td>
       </tr>
       <tr>
         <th>園での様子</th>
-          <td colspan="5"></td>
+          <td colspan="5"><%= f.text_area :status_at_school, class: "form_control" %></td>
       </tr>
       <tr>
         <th colspan="6", class="first">連絡事項</th>
       </tr>
       <tr>
         <th>家庭からの連絡事項</th>
-          <td colspan="5"></td>
+          <td colspan="5"><%= f.text_area :info_from_home, class: "form_control" %></td>
       </tr>
       <tr>
         <th>園からの連絡事項</th>
-          <td colspan="5"></td>
+          <td colspan="5"><%= f.text_area :info_from_school, class: "form_control" %></td>
       </tr>
     </table>
 
     <div class="center">
       <%= f.submit "提出する", class: "btn btn-lg btn-primary" %>
-      <%= link_to "キャンセル", '#', class: "btn btn-lg btn-default" %>
+      <%= link_to "キャンセル", '#', class: "btn btn-lg btn-light" %>
     </div>
   <% end %>
 </div>
