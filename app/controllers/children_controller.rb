@@ -63,6 +63,7 @@ class ChildrenController < ApplicationController
     # @attendanceにデータがあるかどうか
     def find_attendance?
       @attendance = @child.attendances.find_by(worked_on: @day)
+      # @attendance = Attendance.find_by(child_id: @child.id, worked_on: @day.to_s)
     end
 
 end

@@ -3,7 +3,8 @@
 
 <!--園児詳細テーブル-->
 <div>
-  <%= form_with(model: @child, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch) do |f| %>
+  <%= form_with(model: @attendance, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch) do |f| %>
+    <%= f.hidden_field :worked_on, :value => @day %>
     <table class="table table-bordered table-striped table-condensed" id="show-children">
       <tr>
         <th colspan="6">
@@ -69,7 +70,7 @@
       <tr>
         <th>排便</th>
           <td colspan="3">
-            <%= f.time_select :toilet_time, minute_step: 15, class: "form_control" %>
+            <%= f.time_select :toilet_time, :default => {:hour => '0', :minute => '00'},minute_step: 15, class: "form_control" %>
             <p style="color:red; font-size:80%">※無の場合は00表示
           </td>
         <th>便の状況</th>

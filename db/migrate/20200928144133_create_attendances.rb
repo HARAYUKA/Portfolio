@@ -8,22 +8,22 @@ class CreateAttendances < ActiveRecord::Migration[5.2]
       t.string :pick_up_person
       t.string :feeling
       t.float :temp
-      t.time :dinner_time
+      t.datetime :dinner_time
       t.string :amount_dinner
-      t.time :morning_time
+      t.datetime :morning_time
       t.string :amount_morning
-      t.time :lunch_time
+      t.datetime :lunch_time
       t.string :amount_lunch
-      t.time :first_snack
+      t.datetime :first_snack
       t.string :amount_1_snack
-      t.time :second_snack
+      t.datetime :second_snack
       t.string :amount_2_snack
-      t.time :toilet_time
+      t.datetime :toilet_time
       t.string :toilet_status
-      t.time :start_night_sleep
-      t.time :end_night_sleep
-      t.time :start_afternoon_sleep
-      t.time :end_afternoon_sleep
+      t.datetime :start_night_sleep
+      t.datetime :end_night_sleep
+      t.datetime :start_afternoon_sleep
+      t.datetime :end_afternoon_sleep
       t.string :status_at_home
       t.string :status_at_school
       t.string :info_from_home
