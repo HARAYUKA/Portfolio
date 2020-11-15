@@ -52,6 +52,6 @@ class Parent < ApplicationRecord
   # 保護者一覧のsearch
   def self.search(search)
     return Parent.all unless search
-    Parent.where(['name LIKE? OR relationship LIKE? OR child_name LIKE? OR child_class LIKE? OR class_teacher LIKE?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+    Parent.where(['name LIKE? OR relationship LIKE?', "%#{search}%", "%#{search}%"])
   end
 end

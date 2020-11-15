@@ -25,7 +25,7 @@
             <%= f.text_field :staff_id, class: "form-control" %>
           
             <%= f.label :child_class, class: "label-#{yield(:class_text)}" %>
-            <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん', 'ねこ', 'とら', 'らいおん'], {include_blank: false}, class: "form_control" %>          
+            <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん'], {include_blank: false}, class: "form_control" %>          
 
             <div class="center">
               <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
