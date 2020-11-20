@@ -12,116 +12,15 @@
           <%= link_to "< 前日", parent_child_path(@parent, @child, date: @day.yesterday), class: "btn btn-info-small" %>
           <b><%= l(@day, format: :long)%></b>
           <%= link_to "翌日 >", parent_child_path(@parent, @child, date: @day.tomorrow), class: "btn btn-info-small" %>
-        </td>
+        </th>
       </tr>
       <tr>
-        <th colspan="6", class="first">登園基本情報</th>
+        <th colspan="6", class="first">登園予定情報</th>
       </tr>
       <tr>
-        <td colspan="6"><%= f.select :status_attendance, ['登園予定', '欠席'], {include_blank: false}, class: "form-control" %></td>
+        <td colspan="6"><%= f.select :status_attendance, [['登園予定', 1], ['欠席', 2]], {include_blank: "選択してください"}, id: "changeSelect" %></td>
       </tr>
-      <% if @attendance.status_attendance = '登園予定' %>
-        <tr>
-          <th>登園予定時間</th>
-            <td><%= f.time_select :attendance_time, :default => {:hour => '8', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
-          <th>お迎え予定時間</th>
-            <td><%= f.time_select :pick_up_time, :default => {:hour => '17', :minute => '00'}, :minute_step => 15, class: "form_control" %></td>
-          <th>お迎えの方</th>
-            <td><%= f.select :pick_up_person, ['母', '父', '祖母', '祖父', 'おば', 'おじ'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>ご機嫌</th>
-            <td><%= f.select :feeling, ['普', '良', '悪'], {include_blank: false}, class: "form-control" %></td>
-          <th>体温</th>
-            <td colspan="3"></td>
-        </tr>
-        <tr>
-          <th colspan="6", class="first">食事</th>
-        </tr>
-        <tr>
-          <th>夕食時間</th>
-            <td colspan="3"><%= f.time_select :dinner_time, :default => {:hour => '18', :minute => '00'}, :minute_step => 15, class: "form_control" %></td>
-          <th>夕食量</th>
-            <td colspan="3"><%= f.select :amount_dinner, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>朝食時間</th>
-            <td colspan="3"><%= f.time_select :morning_time, :default => {:hour => '7', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
-          <th>朝食量</th>
-            <td colspan="3"><%= f.select :amount_morning, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>おやつ①</th>
-            <td colspan="3"><%= f.time_select :first_snack, :default => {:hour => '9', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
-          <th>食べた量</th>
-            <td colspan="3"><%= f.select :amount_1_snack, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>昼食時間</th>
-            <td colspan="3"><%= f.time_select :lunch_time, :default => {:hour => '11', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
-          <th>昼食量</th>
-            <td colspan="3"><%= f.select :amount_lunch, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>おやつ②</th>
-            <td colspan="3"><%= f.time_select :second_snack, :default => {:hour => '15', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
-          <th>食べた量</th>
-            <td colspan="3"><%= f.select :amount_2_snack, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th>排便</th>
-            <td colspan="3">
-              <%= f.time_select :toilet_time, :default => {:hour => '0', :minute => '00'},minute_step: 15, class: "form_control" %>
-              <p style="color:red; font-size:80%">※無の場合は00表示
-            </td>
-          <th>便の状況</th>
-            <td colspan="3"><%= f.select :toilet_status, ['普通', '硬め', '柔らかめ'], {include_blank: false}, class: "form-control" %></td>
-        </tr>
-        <tr>
-          <th colspan="6", class="first">睡眠</th>
-        </tr>
-        <tr>
-          <th>就寝時間</th>
-            <td colspan="3">
-              <%= f.time_select :start_night_sleep, :default => {:hour => '20', :minute => '30'}, :minute_step => 15, class: "form_control" %> 〜
-              <%= f.time_select :end_night_sleep, :default => {:hour => '7', :minute => '00'}, :minute_step => 15, class: "form_control" %>
-            </td>
-          <th>お昼寝時間</th>
-            <td colspan="3">
-              <%= f.time_select :start_afternoon_sleep, :default => {:hour => '12', :minute => '30'}, :minute_step => 15, class: "form_control" %> 〜
-              <%= f.time_select :end_afternoon_sleep, :default => {:hour => '13', :minute => '30'}, :minute_step => 15, class: "form_control" %>
-            </td>
-        </tr>
-        <tr>
-          <th colspan="6", class="first">園児の様子</th>
-        </tr>
-        <tr>
-          <th>家庭での様子</th>
-            <td colspan="5"><%= f.text_area :status_at_home, class: "form_control" %></td>
-        </tr>
-        <tr>
-          <th>園での様子</th>
-            <td colspan="5"><%= f.text_area :status_at_school, class: "form_control" %></td>
-        </tr>
-        <tr>
-          <th colspan="6", class="first">連絡事項</th>
-        </tr>
-        <tr>
-          <th>家庭からの連絡事項</th>
-            <td colspan="5"><%= f.text_area :info_from_home, class: "form_control" %></td>
-        </tr>
-        <tr>
-          <th>園からの連絡事項</th>
-            <td colspan="5"><%= f.text_area :info_from_school, class: "form_control" %></td>
-        </tr>
-      <% else %>
-        <tr>
-          <th colspan="6", class="first">欠席理由</th>
-        </tr>
-        <tr>
-          <td colspan="5"><%= f.text_area :reason_of_absence, class: "form_control" %></td>
-        </tr>
-      <% end %>
+
     </table>
 
     <div class="center">
@@ -130,3 +29,16 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $(function() {
+    $('#changeSelect').change(function() {
+      let val = $(this).val();
+      if(val == 1) {
+        $("#show-children").html("<%= escape_javascript(render 'children/attend') %>");
+      }else {
+        $("#show-children").html("<%= escape_javascript(render 'children/absence') %>");
+      }
+    });
+  });
+</script>

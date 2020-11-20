@@ -1,0 +1,22 @@
+<%= form_with(model: @attendance, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch) do |f| %>
+  <%= f.hidden_field :worked_on, :value => @day %>
+  <table class="table table-bordered table-striped table-condensed" id="absence-children">
+    <tr>
+      <th colspan="6">
+        <%= l(@day, format: :long)%></b>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">登園予定情報</th>
+    </tr>
+    <tr>
+      <td colspan="6"><%= "欠席" %></td>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">欠席理由</th>
+    </tr>
+    <tr>
+      <td colspan="5"><%= f.text_area :reason_of_absence, class: "form_control" %></td>
+    </tr>
+  </table>
+<% end %>

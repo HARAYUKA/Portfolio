@@ -28,6 +28,7 @@ class CreateAttendances < ActiveRecord::Migration[5.2]
       t.string :status_at_school
       t.string :info_from_home
       t.string :info_from_school
+      t.string :reason_of_absence
       t.references :child, foreign_key: true
 
       t.timestamps

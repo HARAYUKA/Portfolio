@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_052958) do
     t.string "status_at_school"
     t.string "info_from_home"
     t.string "info_from_school"
+    t.string "reason_of_absence"
     t.integer "child_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
