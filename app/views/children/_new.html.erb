@@ -12,7 +12,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <%= form_with(model: @child, url: parent_children_path(@parent), local: true) do |f| %>
+          <%= form_with(model: @child, url: parent_children_path(@parent), local: true, id: "change-age") do |f| %>
             <%= render 'shared/error_messages', object: @child %>
           
             <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>

@@ -1,11 +1,20 @@
-<%= form_with(model: @attendance, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch) do |f| %>
+<%= form_with(model: @attendance, url: parent_child_attendance_path(@parent, @child, @attendance), local: true, method: :patch, id: "attend-children") do |f| %>
   <%= f.hidden_field :worked_on, :value => @day %>
-  <table class="table table-bordered table-striped table-condensed" id="attend-children">
+  <table class="table table-bordered table-striped table-condensed">
     <tr>
       <th colspan="6">
-        <%= l(@day, format: :long)%></b>
+        <%= link_to " 本日 ", parent_child_path(@parent, @child, date: Date.today), class: "btn btn-primary" %>
+        <%= link_to "< 前日", parent_child_path(@parent, @child, date: @day.yesterday), class: "btn btn-info-small" %>
+        <b><%= l(@day, format: :long)%></b>
+        <%= link_to "翌日 >", parent_child_path(@parent, @child, date: @day.tomorrow), class: "btn btn-info-small" %>
       </th>
     </tr>
+    <tr>
+        <th colspan="6", class="first">登園予定情報</th>
+      </tr>
+      <tr>
+        <td colspan="6"><%= f.select :status_attendance, [['登園予定', 1], ['欠席', 2]], {include_blank: false}, id: "changeSelect" %></td>
+      </tr>
     <tr>
       <th>登園予定時間</th>
         <td><%= f.time_select :attendance_time, :default => {:hour => '8', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
@@ -100,4 +109,9 @@
         <td colspan="5"><%= f.text_area :info_from_school, class: "form_control" %></td>
     </tr>
   </table>
+
+  <div class="center">
+    <%= f.submit "提出する", class: "btn btn-lg btn-primary" %>
+    <%= link_to "キャンセル", '#', class: "btn btn-lg btn-light" %>
+  </div>
 <% end %>
