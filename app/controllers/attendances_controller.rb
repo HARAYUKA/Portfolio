@@ -6,7 +6,7 @@ class AttendancesController < ApplicationController
     ActiveRecord::Base.transaction do
       # 登園予定の処理。既に欠席で更新されていた場合のattendanceの項目「欠席理由」をnilにしてStrongParameterの項目を更新
       if params[:attendance][:status_attendance] == "1"
-        @attendance.reason_of_absence = nil
+        params[:attendance][:reason_of_absence] = nil
         @attendance.update_attributes!(attendances_params)
         flash[:success] = "#{@child.child_name}の連絡帳を出席予定で提出しました。"
       # 欠席の処理。既に登園予定で更新されていた場合のattendanceの項目をnilにする。項目が多い為、特定の項目以外をnilにする、という処理
@@ -17,7 +17,7 @@ class AttendancesController < ApplicationController
         attendance_keys.each do |keys| # 文字列に変えた@attendanceの項目のhashキーをeachで取り出す
           if keys == "worked_on" || keys == "reason_of_absence" # keysが「日付」または「欠席理由」の場合
             attendance_hash[keys] = params[:attendance][:"#{keys}"]
-          elsif no_update.exclude?(keys) # 上記以外のキーの場合、no_updateの項目にattendanceが含まれていなければtrueを返す
+          elsif no_update.exclude?(keys) # 上記以外のキーの場合、no_updateの項目にkeysが含まれていなければtrueを返す
             attendance_hash[keys] = nil
           end
         end

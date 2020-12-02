@@ -27,7 +27,7 @@
           <th colspan="6", class="first">欠席理由</th>
         </tr>
         <tr>
-          <td colspan="5"><%= f.text_area :reason_of_absence, class: "form_control" %></td>
+          <td colspan="6"><%= f.text_area :reason_of_absence, class: "form_control" %></td>
         </tr>
       </tbody>
 
@@ -136,29 +136,17 @@
   <% end %>
 </div>
 
-//<script>
-//  function entryChange2(){
-//    if(document.getElementById('changeSelect')){
-//      id = document.getElementById('changeSelect').value;
-//
-//      if(id == '1'){
-//        document.getElementById('attend-children').style.display = "";
-//        document.getElementById('absence-children').style.display = "none";
-//      }else{
-//        document.getElementById('attend-children').style.display = "none";
-//        document.getElementById('absence-children').style.display = "";
-//      }
-//    }
-//  }
-//  
-//  window.onload = entryChange2;
-//</script>
-
 <script>
   $(function() {
+    '<% if @attendance.status_attendance == '2' %>'
+      $('#attend-children').hide();
+      $('#absence-children').show();
+    '<% else %>'
+      $('#attend-children').show();
+      $('#absence-children').hide();
+    '<% end %>'
     $('#changeSelect').change(function() {
       let val = $(this).val();
-      console.log(val)
       if(val == 1){
         $('#attend-children').show();
         $('#absence-children').hide();

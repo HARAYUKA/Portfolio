@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/i18n/datepicker-ja
 //= require popper
 //= require bootstrap-sprockets
 

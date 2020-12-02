@@ -18,17 +18,17 @@
             <%= f.label :child_name, class: "label-#{yield(:class_text)}" %>
             <%= f.text_field :child_name, class: "form-control" %>
           
-            <%= f.label :age, class: "label-#{yield(:class_text)}" %>
-            <%= f.number_field :age, class: "form-control", min: 0, max: 5 %>
-          
             <%= f.label :birthday, class: "label-#{yield(:class_text)}" %><br>
-            <%= f.date_select :birthday,
-                {start_year: 2010,
+            <%= raw sprintf(f.date_select( :birthday,
+                start_year: 2010,
                 end_year: (Time.now.year),
                 default: Date.new(2020, 1, 1),
                 use_month_numbers: true,
-                date_separator: '/'} %><br>
+                date_separator: '%s'),'年','月')+'日' %><br>
                 <!-- #date_fieldでカッコよくできる -->
+
+            <%= f.label :age, class: "label-#{yield(:class_text)}" %>
+            <%= f.number_field :age, class: "form-control", min: 0, max: 5 %>
           
             <%= f.radio_button :gender, :man %>
             <%= f.label :gender, "男", {value: :man, style: "display: inline-block;"} %>
