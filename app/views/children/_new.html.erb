@@ -2,6 +2,7 @@
 <% provide(:button_text, '登録') %>
 
 <head>
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
 </head>
 
@@ -23,9 +24,7 @@
             <%= f.text_field :child_name, class: "form-control" %>
           
             <%= f.label :birthday, class: "label-#{yield(:class_text)}" %><br>
-            <%= f.text_field :birthday, class: "form-control dp", id: "birthdayYMD" %>
-
-            <!-- %= f.select :birthday, ["--"], {}, id:"select_birth_year" % -->
+            <%= f.text_field :birthday, {class: "form-control dp", id: "birthdayYMD"} %>
             
             <!-- %= raw sprintf(f.date_field( :birthday,
                 start_year: 2010,
@@ -36,7 +35,7 @@
                 <!-- #date_fieldでカッコよくできる -->
 
             <%= f.label :age, class: "label-#{yield(:class_text)}" %>
-            <%= f.text_field :age, class: "form-control", id: "nowAge", min: 0, max: 5 %>
+            <%= f.text_field :age, {class: "form-control", id: "nowAge"} %>
           
             <%= f.radio_button :gender, :man %>
             <%= f.label :gender, "男", {value: :man, style: "display: inline-block;"} %>
@@ -64,25 +63,23 @@
     $(".dp").datepicker( {
       changeYear: true,  // 年選択をプルダウン化
       changeMonth: true,  // 月選択をプルダウン化
-      yearRange: "-5:+5" // 現在日付の5年前～5年後まで選択可能
+      yearRange: "-5:" // 現在日付の5年前～5年後まで選択可能
     } );
   });
+</script>
 
+<script>
   $(function(){
-    $("text_field").change( function() {
-      var cls = $(this).attr("class");
-
-      if ( cls.match(/bd/)  ) {
-          birthday_ymd = $('#birthdayYMD').val();
-          retBirth = birthday_ymd.split("/");
-          y = parseInt(retBirth[0], 10);
-          m = parseInt(retBirth[1], 10);
-          d = parseInt(retBirth[2], 10);
-      }
+    $('#birthdayYMD').change(function() {
+      birthday_ymd = $('#birthdayYMD').val();
+      retBirth = birthday_ymd.split("/");
+      y = parseInt(retBirth[0], 10);
+      m = parseInt(retBirth[1], 10);
+      d = parseInt(retBirth[2], 10);
 
       myNow = new Date();    // 現在
-      myBirth = new Date( 2010, 0, d );    // 基準日
-      myBirth.setTime( myNow.getTime() - myBirth.getTime() );
+      myBirth = new Date( 1970, 0, d );    // 基準日
+      myBirth.setTime( myNow.getTime() - myBirth.getTime() );    // getTimeは1970年からの経過ミリ秒数を取得するメソッド
 
       // 求めた年月日から基準日を引く
       myYear  = myBirth.getUTCFullYear() - y;
@@ -94,11 +91,9 @@
           myMonth += 12;
       }
 
-      myDate = myBirth.getUTCDate();
+      // myDate = myBirth.getUTCDate();
 
-      if( cls.match(/bd/) ){
-          $('#nowAge').text( myYear+"才 "+myMonth+"ヶ月 "+myDate+"日目" );
-      }
+      $('#nowAge').val( myYear+"才 "+myMonth+"ヶ月 " );
     });
   });
 </script>

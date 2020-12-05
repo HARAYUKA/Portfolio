@@ -2,24 +2,3 @@
 <h1><%= @teacher.name %> 先生</h1>
 
 <h3>本日の登園予定園児一覧</h3>
-<div>
-  <table class="table table-bordered table-striped table-condensed" id="index-children">
-    <tr>
-      <th>名前</th>
-      <th>年齢</th>
-      <th>誕生日</th>
-      <th>性別</th>
-      <th>クラス</th>
-    </tr>
-
-    <% @children.each do |child| %>
-      <tr>
-        <td><%= link_to child.child_name, '#' %></td>
-        <td><%= child.age %></td>
-        <td><%= child.birthday %></td>
-        <td><%= child.gender %></td>
-        <td><%= Classroom.find(child.classroom_id).class_name %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>

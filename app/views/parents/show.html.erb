@@ -11,7 +11,7 @@
   <table class="table table-bordered table-striped table-condensed" id="index-children">
     <tr>
       <th>名前</th>
-      <th>年齢</th>
+      <th>月齢</th>
       <th>誕生日</th>
       <th>性別</th>
       <th>クラス</th>
@@ -21,9 +21,9 @@
     <% @children.each do |child| %>
       <tr>
         <td><%= link_to child.child_name, parent_child_path(@parent, child) %></td>
-        <td><%= child.age %></td>
-        <td><%= child.birthday %></td>
-        <td><%= child.gender %></td>
+        <td id="monthAge"><%= child.age %></td>
+        <td><%= l(child.birthday, format: :default) %></td>
+        <td><%= child.gender_i18n %></td>
         <td><%= Classroom.find(child.classroom_id).class_name %></td>
         <td>
           <%= link_to "編集", edit_parent_child_path(@parent, child), remote: true, class: "btn btn-success" %>

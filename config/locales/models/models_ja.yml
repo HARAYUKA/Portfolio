@@ -35,7 +35,7 @@ ja:
         child:
           id: ID
           child_name: 園児名
-          age: 年齢
+          age: 月齢
           birthday: 誕生日
           gender: 性別
           class_name: クラス名 # ここ要るかな？
