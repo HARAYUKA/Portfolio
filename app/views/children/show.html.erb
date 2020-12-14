@@ -9,9 +9,9 @@
       <tr>
         <th colspan="6">
           <%= link_to " 本日 ", parent_child_path(@parent, @child, date: Date.today), class: "btn btn-primary" %>
-          <%= link_to "< 前日", parent_child_path(@parent, @child, date: @day.yesterday), class: "btn btn-info-small" %>
+          <%= link_to "< 前日　", parent_child_path(@parent, @child, date: @day.yesterday) %>
           <b><%= l(@day, format: :long)%></b>
-          <%= link_to "翌日 >", parent_child_path(@parent, @child, date: @day.tomorrow), class: "btn btn-info-small" %>
+          <%= link_to "　翌日 >", parent_child_path(@parent, @child, date: @day.tomorrow) %>
         </th>
       </tr>
       <tr>
@@ -64,21 +64,33 @@
           </tr>
           <tr>
             <th>おやつ①</th>
-              <td colspan="3"><%= f.time_select :first_snack, :default => {:hour => '9', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
+              <% if @attendance.first_snack != nil %>
+                <td colspan="3"><%= l(@attendance.first_snack, format: :time) %></td>
+              <% else %>
+                <td colspan="3"></td>
+              <% end %>
             <th>食べた量</th>
-              <td colspan="3"><%= f.select :amount_1_snack, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
+              <td colspan="3"><%= @attendance.amount_1_snack %></td>
           </tr>
           <tr>
             <th>昼食時間</th>
-              <td colspan="3"><%= f.time_select :lunch_time, :default => {:hour => '11', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
+              <% if @attendance.lunch_time != nil %>
+                <td colspan="3"><%= l(@attendance.lunch_time, format: :time) %></td>
+              <% else %>
+                <td colspan="3"></td>
+              <% end %>
             <th>昼食量</th>
-              <td colspan="3"><%= f.select :amount_lunch, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
+              <td colspan="3"><%= @attendance.amount_lunch %></td>
           </tr>
           <tr>
             <th>おやつ②</th>
-              <td colspan="3"><%= f.time_select :second_snack, :default => {:hour => '15', :minute => '30'}, :minute_step => 15, class: "form_control" %></td>
+              <% if @attendance.second_snack != nil %>
+                <td colspan="3"><%= l(@attendance.second_snack, format: :time) %></td>
+              <% else %>
+                <td colspan="3"></td>
+              <% end %>
             <th>食べた量</th>
-              <td colspan="3"><%= f.select :amount_2_snack, ['普', '少', '多'], {include_blank: false}, class: "form-control" %></td>
+              <td colspan="3"><%= @attendance.amount_2_snack %></td>
           </tr>
           <tr>
             <th>排便</th>
@@ -99,10 +111,14 @@
                 <%= f.time_select :end_night_sleep, :default => {:hour => '7', :minute => '00'}, :minute_step => 15, class: "form_control" %>
               </td>
             <th>お昼寝時間</th>
-              <td colspan="3">
-                <%= f.time_select :start_afternoon_sleep, :default => {:hour => '12', :minute => '30'}, :minute_step => 15, class: "form_control" %> 〜
-                <%= f.time_select :end_afternoon_sleep, :default => {:hour => '13', :minute => '30'}, :minute_step => 15, class: "form_control" %>
-              </td>
+              <% if @attendance.start_afternoon_sleep != nil && @attendance.end_afternoon_sleep != nil %>
+                <td colspan="3">
+                  <%= l(@attendance.start_afternoon_sleep, format: :time) %> 〜
+                  <%= l(@attendance.end_afternoon_sleep, format: :time) %>
+                </td>
+              <% else %>
+                <td colspan="3"></td>
+              <% end %>
           </tr>
           <tr>
             <th colspan="6", class="first">園児の様子</th>
@@ -113,7 +129,7 @@
           </tr>
           <tr>
             <th>園での様子</th>
-              <td colspan="5"><%= f.text_area :status_at_school, class: "form_control" %></td>
+              <td colspan="5" class="entered_form"><%= @attendance.status_at_school %></td>
           </tr>
           <tr>
             <th colspan="6", class="first">連絡事項</th>
@@ -124,7 +140,7 @@
           </tr>
           <tr>
             <th>園からの連絡事項</th>
-              <td colspan="5"><%= f.text_area :info_from_school, class: "form_control" %></td>
+              <td colspan="5" class="entered_form"><%= @attendance.info_from_school %></td>
           </tr>
         </tbody>
     </table>

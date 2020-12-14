@@ -12,6 +12,14 @@ class TeachersController < ApplicationController
   end
 
   def show
+    @classroom = Classroom.find(@teacher.classroom_id)
+    # @children = Child.joins(:classroom, :attendances).where(attendances: {status_attendance: "1"})
+    @children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "1", worked_on: Date.today}).order(:id)
+  end
+
+  def edit_attendance
+    @child = Child.find(params[:id])
+    @attendance = @child.attendances.find_by(worked_on: Date.current)
   end
 
   def new

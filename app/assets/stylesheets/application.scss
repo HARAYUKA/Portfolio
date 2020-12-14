@@ -249,4 +249,9 @@ p {
     vertical-align: middle;
     text-align: center;
   }
+  /* 連絡帳の入力済み項目 */
+  td.entered_form {
+    text-align: left;
+  }
 }
+

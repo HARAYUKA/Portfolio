@@ -21,7 +21,7 @@
     <% @children.each do |child| %>
       <tr>
         <td><%= link_to child.child_name, parent_child_path(@parent, child) %></td>
-        <td id="monthAge"><%= child.age %></td>
+        <td><%= child.age %></td>
         <td><%= l(child.birthday, format: :default) %></td>
         <td><%= child.gender_i18n %></td>
         <td><%= Classroom.find(child.classroom_id).class_name %></td>

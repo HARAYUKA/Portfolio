@@ -1,4 +1,30 @@
 <% provide(:title, @teacher.name) %>
 <h1><%= @teacher.name %> 先生</h1>
 
-<h3>本日の登園予定園児一覧</h3>
+<h3>本日<%= l(Date.current, format: :short) %>の登園予定園児一覧</h3>
+
+<!--登園予定園児一覧テーブル-->
+<div>
+  <div>担当クラス：<%= @classroom[:class_name] %></div>
+  <table class="table table-bordered table-striped table-condensed" id="index-children">
+    <tr>
+      <th>名前</th>
+      <th>月齢</th>
+      <th>誕生日</th>
+      <th>性別</th>
+      <th>クラス</th>
+      <th>連絡帳</th>
+    </tr>
+
+    <% @children.each do |child| %>
+      <tr>
+        <td><%= child.child_name %></td>
+        <td><%= child.age %></td>
+        <td><%= l(child.birthday, format: :default) %></td>
+        <td><%= child.gender_i18n %></td>
+        <td><%= Classroom.find(child.classroom_id).class_name %></td>
+        <td><%= link_to "連絡帳", edit_attendance_teacher_path(child), class: "btn btn-info" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
