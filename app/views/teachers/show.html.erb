@@ -23,7 +23,7 @@
         <td><%= l(child.birthday, format: :default) %></td>
         <td><%= child.gender_i18n %></td>
         <td><%= Classroom.find(child.classroom_id).class_name %></td>
-        <td><%= link_to "連絡帳", edit_attendance_teacher_path(child), class: "btn btn-info" %></td>
+        <td><%= link_to "連絡帳", edit_attendance_teacher_path(@teacher, child_id: child.id), class: "btn btn-info" %></td>
       </tr>
     <% end %>
   </table>

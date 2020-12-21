@@ -3,7 +3,7 @@
 
 <!--園児詳細テーブル-->
 <div>
-  <%= form_with(model: @attendance, url: '#', method: :patch, id: "show-children") do |f| %>
+  <%= form_with(model: @attendance, url: update_attendance_teacher_path(@teacher, @child), method: :patch, id: "show-children") do |f| %>
     <table class="table table-bordered table-striped table-condensed">
       <tr>
         <th colspan="6">

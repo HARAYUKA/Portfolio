@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info]
+  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info, :edit_attendance, :update_attendance]
   before_action :logged_in_teacher, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:edit, :update]
   # before_action :admin_teacher, only: :destroy
@@ -14,12 +14,23 @@ class TeachersController < ApplicationController
   def show
     @classroom = Classroom.find(@teacher.classroom_id)
     # @children = Child.joins(:classroom, :attendances).where(attendances: {status_attendance: "1"})
-    @children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "1", worked_on: Date.today}).order(:id)
+    @children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "1", worked_on: Date.today}).order(:birthday)
   end
 
   def edit_attendance
-    @child = Child.find(params[:id])
+    @child = Child.find(params[:child_id])
     @attendance = @child.attendances.find_by(worked_on: Date.current)
+  end
+
+  def update_attendance
+    @child = Child.find(params[:child_id])
+    @attendance = @child.attendances.find_by(worked_on: Date.current)
+    if @attendance.update_attributes(edit_attendance_params)
+      flash[:success] = "#{@child.child_name}の連絡帳を返信しました。"
+    else
+      flash[:danger] = "#{@child.child_name}の連絡帳を返信出来ませんでした。。"
+    end
+    redirect_to teacher_url(@teacher)
   end
 
   def new
@@ -75,5 +86,10 @@ class TeachersController < ApplicationController
 
       def manag_info_params
         params.require(:teacher).permit(:staff_id, :child_class)
+      end
+
+      def edit_attendance_params
+        params.require(:attendance).permit(:first_snack, :amount_1_snack, :lunch_time, :amount_lunch, :second_snack, 
+          :amount_2_snack,:start_afternoon_sleep, :end_afternoon_sleep, :status_at_school, :info_from_home, :info_from_school)
       end
 end
