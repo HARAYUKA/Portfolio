@@ -2,7 +2,7 @@ class ParentsController < ApplicationController
   before_action :set_parent, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info]
   before_action :logged_in_parent, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_parent, only: [:edit, :update]
-  before_action :admin_teacher, only: :destroy
+  # before_action :admin_teacher, only: :destroy
 
 
   def index
@@ -14,6 +14,8 @@ class ParentsController < ApplicationController
 
   def show
     @children = @parent.children
+    # @child = @parent.children.find(params[:id])
+    # @attendance = @child.attendances
   end
 
   # 親ユーザー作成

@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2020_10_02_052958) do
     t.string "info_from_home"
     t.string "info_from_school"
     t.string "reason_of_absence"
+    t.boolean "send_check", default: false, null: false
+    t.boolean "reply_check", default: false, null: false
     t.integer "child_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_10_02_052958) do
     t.string "name"
     t.string "email"
     t.integer "staff_id"
+    t.boolean "reply_check"
     t.string "password_digest"
     t.string "remember_digest"
     t.integer "classroom_id"
