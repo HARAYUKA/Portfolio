@@ -149,7 +149,7 @@
       <%= f.check_box :send_check %>
       <%= f.label :提出内容を確認しました %><br>
       <%= f.submit "提出する", class: "btn btn-lg btn-primary" %>
-      <%= link_to "キャンセル", '#', class: "btn btn-lg btn-light" %>
+      <%= link_to "キャンセル", parent_path(@parent), class: "btn btn-lg btn-light" %>
     </div>
   <% end %>
 </div>

@@ -14,7 +14,8 @@ class TeachersController < ApplicationController
   def show
     @classroom = Classroom.find(@teacher.classroom_id)
     # @children = Child.joins(:classroom, :attendances).where(attendances: {status_attendance: "1"})
-    @children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "1", worked_on: Date.today}).order(:birthday)
+    @attend_children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "1", worked_on: Date.today}).order(:birthday)
+    @absence_children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "2", worked_on: Date.today}).order(:birthday)
   end
 
   def edit_attendance
@@ -25,12 +26,15 @@ class TeachersController < ApplicationController
   def update_attendance
     @child = Child.find(params[:child_id])
     @attendance = @child.attendances.find_by(worked_on: Date.current)
-    if @attendance.update_attributes(edit_attendance_params)
+    if params[:attendance][:reply_check] == "1"
+      @attendance.update_attributes(edit_attendance_params)
+      debugger
       flash[:success] = "#{@child.child_name}の連絡帳を返信しました。"
     else
-      flash[:danger] = "#{@child.child_name}の連絡帳を返信出来ませんでした。。"
+      flash[:danger] = "#{@child.child_name}の返信内容確認のチェックが入っていません。"
+      redirect_to edit_attendance_teacher_url(@teacher, child_id: @child) and return
     end
-    redirect_to teacher_url(@teacher)
+    redirect_to @teacher and return
   end
 
   def new
@@ -90,6 +94,6 @@ class TeachersController < ApplicationController
 
       def edit_attendance_params
         params.require(:attendance).permit(:first_snack, :amount_1_snack, :lunch_time, :amount_lunch, :second_snack, 
-          :amount_2_snack,:start_afternoon_sleep, :end_afternoon_sleep, :status_at_school, :info_from_home, :info_from_school)
+          :amount_2_snack,:start_afternoon_sleep, :end_afternoon_sleep, :status_at_school, :info_from_home, :info_from_school, :reply_check)
       end
 end

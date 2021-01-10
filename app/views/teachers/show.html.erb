@@ -16,15 +16,45 @@
       <th>連絡帳</th>
     </tr>
 
-    <% @children.each do |child| %>
+    <% @attend_children.each do |child| %>
       <tr>
         <td><%= child.child_name %></td>
         <td><%= child.age %></td>
         <td><%= l(child.birthday, format: :default) %></td>
         <td><%= child.gender_i18n %></td>
         <td><%= Classroom.find(child.classroom_id).class_name %></td>
-        <td><%= link_to "連絡帳", edit_attendance_teacher_path(@teacher, child_id: child.id), class: "btn btn-info" %></td>
+        <td>
+          <% if child.attendances.find_by(worked_on: Date.today).reply_check == true %>
+            <%= link_to "返信済", edit_attendance_teacher_path(@teacher, child_id: child.id), class: "btn btn-secondary" %>
+          <% else %>
+            <%= link_to "連絡帳", edit_attendance_teacher_path(@teacher, child_id: child.id), class: "btn btn-info" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
+
+  <h3>本日<%= l(Date.current, format: :short) %>の欠席園児一覧</h3>
+
+  <table class="table table-bordered table-striped table-condensed" id="index-children">
+    <tr>
+      <th>名前</th>
+      <th>月齢</th>
+      <th>誕生日</th>
+      <th>性別</th>
+      <th>クラス</th>
+      <th>欠席理由</th>
+    </tr>
+
+    <% @absence_children.each do |child| %>
+      <tr>
+        <td><%= child.child_name %></td>
+        <td><%= child.age %></td>
+        <td><%= l(child.birthday, format: :default) %></td>
+        <td><%= child.gender_i18n %></td>
+        <td><%= Classroom.find(child.classroom_id).class_name %></td>
+        <td><%= child.attendances.find_by(worked_on: Date.today).reason_of_absence %></td>
+      </tr>
+    <% end %>
+  </table><br>
 </div>

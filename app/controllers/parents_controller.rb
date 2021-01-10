@@ -14,8 +14,6 @@ class ParentsController < ApplicationController
 
   def show
     @children = @parent.children
-    # @child = @parent.children.find(params[:id])
-    # @attendance = @child.attendances
   end
 
   # 親ユーザー作成

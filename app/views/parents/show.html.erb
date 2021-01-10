@@ -31,10 +31,18 @@
         <td><%= Classroom.find(child.classroom_id).class_name %></td>
         <td>
         <!-- 連絡帳未提出の際、child.attendancesのレコードはまだnilなので、それがnilでない、かつそのレコードのsend_checkが入っている場合に提出済みにする。 
-             仮に前段の条件を外すと、そもそものレコードが無いために、後段の条件がエラーになってしまうので必要 -->
+             仮に１行目の条件を外すと、そもそものレコードが無いために、２・３行目の条件がエラーになってしまうので必要 -->
           <% if (child.attendances.find_by(worked_on: Date.today) != nil) &&
-                (child.attendances.find_by(worked_on: Date.today).send_check = true) %>
-            <%= link_to "提出済", parent_child_path(@parent, child), class: "btn btn-secondary" %>
+                (child.attendances.find_by(worked_on: Date.today).send_check == true) %>
+            <% if child.attendances.find_by(worked_on: Date.today).reply_check == true %>
+              <%= link_to "返信有", parent_child_path(@parent, child), class: "btn btn-warning" %>
+            <% else %>
+              <% if child.attendances.find_by(worked_on: Date.today).status_attendance == "1" %>
+                <%= link_to "登園", parent_child_path(@parent, child), class: "btn btn-secondary" %>
+              <% elsif child.attendances.find_by(worked_on: Date.today).status_attendance == "2" %>
+                <%= link_to "欠席", parent_child_path(@parent, child), class: "btn btn-secondary", :style=>"color:black;" %>
+              <% end %>
+            <% end %>
           <% else %>
             <%= link_to "連絡帳", parent_child_path(@parent, child), class: "btn btn-info" %>
           <% end %>

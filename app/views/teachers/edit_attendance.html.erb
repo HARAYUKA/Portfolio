@@ -114,8 +114,10 @@
     </table>
 
     <div class="center">
+      <%= f.check_box :reply_check %>
+      <%= f.label :返信内容を確認しました %><br>
       <%= f.submit "返信する", class: "btn btn-lg btn-primary" %>
-      <%= link_to "キャンセル", '#', class: "btn btn-lg btn-light" %>
+      <%= link_to "キャンセル", teacher_path(@teacher), class: "btn btn-lg btn-light" %>
     </div>
   <% end %>
 </div>
