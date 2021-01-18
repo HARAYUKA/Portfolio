@@ -1,0 +1,52 @@
+<% provide(:title, @parent.name) %>
+<h1><%= @child.child_name %>の連絡帳一覧</h1>
+
+<!--連絡帳一覧テーブル-->
+<div>
+  <table class="table table-bordered table-striped table-condensed" id="index-children">
+    <tr>
+      <th>日付</th>
+      <th>登園情報</th>
+      <th>体温</th>
+      <th>登園時間</th>
+      <th>降園時間</th>
+      <th>お迎え</th>
+      <th>家庭での様子</th>
+      <th>家庭からの連絡事項</th>
+      <th>園での様子</th>
+      <th>園からの連絡事項</th>
+      <th>詳細確認</th>
+    </tr>
+
+    <% @attendance.each do |attendance| %>
+      <tr>
+        <td><%= l(attendance.worked_on, format: :short) %></td>
+        <td>
+          <% if attendance.status_attendance == "1" %>
+            <button class="btn btn-secondary">登園</button>
+          <% elsif attendance.status_attendance == "2" %>
+            <button class="btn btn-outline-secondary">欠席</button>
+          <% end %>
+        </td>
+        <td></td>
+        <% if attendance.attendance_time != nil %>
+          <td><%= l(attendance.attendance_time, format: :time) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <% if attendance.pick_up_time != nil %>
+          <td><%= l(attendance.pick_up_time, format: :time) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td><%= attendance.pick_up_person %></td>
+        <td><%= attendance.status_at_home %></td>
+        <td><%= attendance.info_from_home %></td>
+        <td><%= attendance.status_at_school %></td>
+        <td><%= attendance.info_from_school %></td>
+        <td></td>
+      </tr>
+    <% end %>
+
+  </table>
+</div>

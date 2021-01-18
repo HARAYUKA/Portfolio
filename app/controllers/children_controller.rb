@@ -1,6 +1,5 @@
 class ChildrenController < ApplicationController
-  # before_action :set_one_month, only: :show
-
+  
   # 園児追加モーダル表示
   def new
     @parent = Parent.find(params[:parent_id])
@@ -40,7 +39,7 @@ class ChildrenController < ApplicationController
     end
   end
 
-  # 園児情報詳細画面
+  # 園児連絡帳提出画面
   def show
     @parent = Parent.find(params[:parent_id])
     @child = @parent.children.find(params[:id])

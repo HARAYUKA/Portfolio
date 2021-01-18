@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info, :edit_attendance, :update_attendance]
+  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info, :edit_attendance, :update_attendance, :all_children]
   before_action :logged_in_teacher, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:edit, :update]
   # before_action :admin_teacher, only: :destroy
@@ -35,6 +35,11 @@ class TeachersController < ApplicationController
       redirect_to edit_attendance_teacher_url(@teacher, child_id: @child) and return
     end
     redirect_to @teacher and return
+  end
+
+  def all_children
+    @classroom = Classroom.find(@teacher.classroom_id)
+    @all_children = @classroom.children.order(:birthday)
   end
 
   def new

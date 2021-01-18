@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       patch 'update_manag_info' # 管理者が編集可能な情報の更新
     end
     resources :children do
-      resources :attendances, only: :update do
+      resources :attendances, only: [:update, :index] do
       end
     end
   end
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       patch 'update_manag_info' # 管理者が編集可能な情報の更新
       get 'edit_attendance' # 園児の連絡帳画面取得
       patch 'update_attendance/:child_id', to: 'teachers#update_attendance', as: 'update_attendance' # 園児の連絡帳更新
+      get 'all_children' # 担当園児一覧表示
     end
   end
 end

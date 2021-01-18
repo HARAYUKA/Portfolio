@@ -1,4 +1,5 @@
 class AttendancesController < ApplicationController
+  # 園児連絡帳更新処理
   def update
     @parent = Parent.find(params[:parent_id])
     @child = @parent.children.find(params[:child_id])
@@ -36,6 +37,14 @@ class AttendancesController < ApplicationController
     flash[:danger] = "無効な入力データがあった為、提出をキャンセルしました。"
     redirect_to @parent and return
   end
+
+  # 連絡帳一覧
+  def index
+    @parent = Parent.find(params[:parent_id])
+    @child = @parent.children.find(params[:child_id])
+    @attendance = @child.attendances.where(created_at: Time.now.beginning_of_month..Time.now.end_of_month).where.not(worked_on: nil)
+  end
+
 end
 
 

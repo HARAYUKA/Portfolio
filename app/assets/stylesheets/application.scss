@@ -109,6 +109,10 @@ h3 {
   color: #777;
 }
 
+h4 {
+  text-align: center;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -198,7 +202,7 @@ p {
 /* ユーザー一覧ページ */
 
 #table-users {
-  background-color: rgba(255, 165, 25, 0.7);
+  background-color: rgba(255, 165, 25, 0.6);
   td {
     vertical-align: middle;
   }  
@@ -222,7 +226,6 @@ p {
 
 /* 園児一覧テーブル */
 #index-children {
-  // background-color: rgba(235, 126, 25, 0.5);
   background-color: rgba(255, 165, 25, 0.6);
   th {
     vertical-align: middle;

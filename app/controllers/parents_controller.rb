@@ -65,6 +65,7 @@ class ParentsController < ApplicationController
     redirect_to parents_url
   end
 
+
   private
 
       def parent_params

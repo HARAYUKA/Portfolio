@@ -20,7 +20,11 @@
       <tr>
         <td><%= child.child_name %></td>
         <td><%= child.age %></td>
-        <td><%= l(child.birthday, format: :default) %></td>
+        <% if child.birthday != nil %>
+          <td><%= l(child.birthday, format: :default) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= child.gender_i18n %></td>
         <td><%= Classroom.find(child.classroom_id).class_name %></td>
         <td>
@@ -36,6 +40,7 @@
 
   <h3>本日<%= l(Date.current, format: :short) %>の欠席園児一覧</h3>
 
+  <!--欠席園児一覧テーブル-->
   <table class="table table-bordered table-striped table-condensed" id="index-children">
     <tr>
       <th>名前</th>
