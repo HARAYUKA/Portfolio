@@ -42,7 +42,13 @@ class AttendancesController < ApplicationController
   def index
     @parent = Parent.find(params[:parent_id])
     @child = @parent.children.find(params[:child_id])
-    @attendance = @child.attendances.where(created_at: Time.now.beginning_of_month..Time.now.end_of_month).where.not(worked_on: nil)
+    # indexを最初に開いた時にはまだparams[:month]は飛んできていない為下記の条件分岐が必要となる。
+    if params[:month].blank?
+      @month = Date.today
+    else
+      @month = params[:month].to_date
+    end
+    @attendances = @child.attendances.where(worked_on: @month.all_month).where.not(worked_on: nil)
   end
 
 end

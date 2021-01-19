@@ -1,6 +1,10 @@
 <% provide(:title, @parent.name) %>
 <h1><%= @child.child_name %>の連絡帳一覧</h1>
 
+<%= link_to "< 前月　", parent_child_attendances_path(@parent, @child, month: Date.today.last_month) %>
+<%= link_to " 当月 ", parent_child_attendances_path(@parent, @child, month: Date.today), class: "btn btn-primary" %>
+<%= link_to "　翌月 >", parent_child_attendances_path(@parent, @child, month: Date.today.next_month) %>
+
 <!--連絡帳一覧テーブル-->
 <div>
   <table class="table table-bordered table-striped table-condensed" id="index-children">
@@ -18,7 +22,7 @@
       <th>詳細確認</th>
     </tr>
 
-    <% @attendance.each do |attendance| %>
+    <% @attendances.each do |attendance| %>
       <tr>
         <td><%= l(attendance.worked_on, format: :short) %></td>
         <td>
@@ -47,6 +51,8 @@
         <td></td>
       </tr>
     <% end %>
-
   </table>
+  <div class="center">
+    <%= link_to "戻る", parent_path(@parent), class: "btn btn-lg btn-primary" %>
+  </div>
 </div>
