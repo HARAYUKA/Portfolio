@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     end
     resources :children do
       resources :attendances, only: [:update, :index] do
+        member do
+          get 'confirm_attendance' # 連絡帳確認ボタン
+        end
       end
     end
   end

@@ -51,6 +51,13 @@ class AttendancesController < ApplicationController
     @attendances = @child.attendances.where(worked_on: @month.all_month).where.not(worked_on: nil)
   end
 
+  # 連絡帳確認ボタン
+  def confirm_attendance
+    @parent = Parent.find(params[:parent_id])
+    @child = @parent.children.find(params[:child_id])
+    @attendance = @child.attendances.find(params[:id])
+  end
+
 end
 
 

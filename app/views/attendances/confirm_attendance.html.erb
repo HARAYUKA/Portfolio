@@ -1,0 +1,158 @@
+<% provide(:title, @child.child_name) %>
+<h1><%= @child.child_name %>の連絡帳</h1>
+
+<% if @attendance.status_attendance == "1" %>
+  <table class="table table-bordered table-striped table-condensed", id="show-children">
+    <tr>
+      <th colspan="6">
+        <%= l(@attendance.worked_on, format: :long)%>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">登園予定情報</th>
+    </tr>
+    <tr>
+      <td colspan="6">登園</td>
+    </tr>
+    
+    <!-- 登園の場合のshow画面 -->
+    <tbody id="attend-children" style="display: block;">
+      <tr>
+        <th>登園予定時間</th>
+          <td><%= l(@attendance.attendance_time, format: :time) %></td>
+        <th>お迎え予定時間</th>
+          <td><%= l(@attendance.pick_up_time, format: :time) %></td>
+        <th>お迎えの方</th>
+          <td><%= @attendance.pick_up_person %></td>
+      </tr>
+      <tr>
+        <tr>
+          <th>ご機嫌</th>
+            <td><%= @attendance.feeling %></td>
+          <th>体温</th>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+          <th colspan="6", class="first">食事</th>
+        </tr>
+        <tr>
+          <th>夕食時間</th>
+            <td colspan="3"><%= l(@attendance.dinner_time, format: :time) %></td>
+          <th>夕食量</th>
+            <td colspan="3"><%= @attendance.amount_dinner %></td>
+        </tr>
+        <tr>
+          <th>朝食時間</th>
+            <td colspan="3"><%= l(@attendance.morning_time, format: :time) %></td>
+          <th>朝食量</th>
+            <td colspan="3"><%= @attendance.amount_morning %></td>
+        </tr>
+      <tr>
+        <th>おやつ①</th>
+          <% if @attendance.first_snack != nil %>
+            <td colspan="3"><%= l(@attendance.first_snack, format: :time) %></td>
+          <% else %>
+            <td colspan="3"></td>
+          <% end %>
+        <th>食べた量</th>
+          <td colspan="3"><%= @attendance.amount_1_snack %></td>
+      </tr>
+      <tr>
+        <th>昼食時間</th>
+          <% if @attendance.lunch_time != nil %>
+            <td colspan="3"><%= l(@attendance.lunch_time, format: :time) %></td>
+          <% else %>
+            <td colspan="3"></td>
+          <% end %>
+        <th>昼食量</th>
+          <td colspan="3"><%= @attendance.amount_lunch %></td>
+      </tr>
+      <tr>
+        <th>おやつ②</th>
+          <% if @attendance.second_snack != nil %>
+            <td colspan="3"><%= l(@attendance.second_snack, format: :time) %></td>
+          <% else %>
+            <td colspan="3"></td>
+          <% end %>
+        <th>食べた量</th>
+          <td colspan="3"><%= @attendance.amount_2_snack %></td>
+      </tr>
+      <tr>
+        <th>排便</th>
+          <td colspan="3">
+            <%= l(@attendance.toilet_time, format: :time) %>
+            <p style="color:red; font-size:80%">※無の場合は00表示
+          </td>
+        <th>便の状況</th>
+          <td colspan="3"><%= @attendance.toilet_status %></td>
+      </tr>
+      <tr>
+        <th colspan="6", class="first">睡眠</th>
+      </tr>
+      <tr>
+        <th>就寝時間</th>
+          <td colspan="3">
+            <%= l(@attendance.start_night_sleep, format: :time) %> 〜
+            <%= l(@attendance.end_night_sleep, format: :time) %>
+        <th>お昼寝時間</th>
+          <% if @attendance.start_afternoon_sleep != nil && @attendance.end_afternoon_sleep != nil %>
+            <td colspan="3">
+              <%= l(@attendance.start_afternoon_sleep, format: :time) %> 〜
+              <%= l(@attendance.end_afternoon_sleep, format: :time) %>
+            </td>
+          <% else %>
+            <td colspan="3"></td>
+          <% end %>
+      </tr>
+      <tr>
+        <th colspan="6", class="first">園児の様子</th>
+      </tr>
+      <tr>
+        <th>家庭での様子</th>
+          <td colspan="5" class="entered_form"><%= @attendance.status_at_home %></td>
+      </tr>
+      <tr>
+        <th>園での様子</th>
+          <td colspan="5" class="entered_form"><%= @attendance.status_at_school %></td>
+      </tr>
+      <tr>
+        <th colspan="6", class="first">連絡事項</th>
+      </tr>
+      <tr>
+        <th>家庭からの連絡事項</th>
+          <td colspan="5" class="entered_form"><%= @attendance.info_from_home %></td>
+      </tr>
+      <tr>
+        <th>園からの連絡事項</th>
+          <td colspan="5" class="entered_form"><%= @attendance.info_from_school %></td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <table class="table table-bordered table-striped table-condensed", id="show-children">
+    <tr>
+      <th colspan="6">
+        <%= l(@attendance.worked_on, format: :long)%>
+      </th>
+    </tr>
+    <tr>
+      <th colspan="6", class="first">登園予定情報</th>
+    </tr>
+    <tr>
+      <td colspan="6">欠席</td>
+    </tr>
+    
+    <!-- 欠席で更新済みの場合のshow画面 -->
+    <tbody id="absence-children">
+      <tr>
+        <th colspan="6", class="first">欠席理由</th>
+      </tr>
+      <tr>
+        <td colspan="6"><%= @attendance.reason_of_absence %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<div class="center">
+    <%= link_to "戻る", parent_child_attendances_path(@parent, @child), class: "btn-gradient-3d-orange" %>
+  </div>
