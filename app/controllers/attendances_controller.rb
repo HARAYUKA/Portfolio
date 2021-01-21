@@ -64,7 +64,7 @@ end
 private
   # 一日分の連絡帳の情報
   def attendances_params
-    params.require(:attendance).permit(:worked_on, :status_attendance, :attendance_time, :pick_up_time, :pick_up_person, :feeling,
+    params.require(:attendance).permit(:worked_on, :status_attendance, :attendance_time, :pick_up_time, :pick_up_person, :feeling, :temp,
     :dinner_time, :amount_dinner, :morning_time, :amount_morning, :toilet_time, :toilet_status, :start_night_sleep, :end_night_sleep, 
     :status_at_home, :info_from_home, :reason_of_absence, :send_check, :reply_check)
   end

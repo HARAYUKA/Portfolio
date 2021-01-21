@@ -1,5 +1,6 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info, :edit_attendance, :update_attendance, :all_children]
+  before_action :set_teacher, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info, 
+                                    :edit_attendance, :update_attendance, :all_children, :index_attendance, :confirm_attendance]
   before_action :logged_in_teacher, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:edit, :update]
   # before_action :admin_teacher, only: :destroy
@@ -28,7 +29,6 @@ class TeachersController < ApplicationController
     @attendance = @child.attendances.find_by(worked_on: Date.current)
     if params[:attendance][:reply_check] == "1"
       @attendance.update_attributes(edit_attendance_params)
-      debugger
       flash[:success] = "#{@child.child_name}の連絡帳を返信しました。"
     else
       flash[:danger] = "#{@child.child_name}の返信内容確認のチェックが入っていません。"
@@ -40,6 +40,24 @@ class TeachersController < ApplicationController
   def all_children
     @classroom = Classroom.find(@teacher.classroom_id)
     @all_children = @classroom.children.order(:birthday)
+  end
+
+  def index_attendance
+    # @classroom = Classroom.find(@teacher.classroom_id)
+    @child = Child.find(params[:child_id])
+    @parent = Parent.find(@child.parent_id)
+    # indexを最初に開いた時にはまだparams[:month]は飛んできていない為下記の条件分岐が必要となる。
+    if params[:month].blank?
+      @month = Date.today
+    else
+      @month = params[:month].to_date
+    end
+    @attendances = @child.attendances.where(worked_on: @month.all_month).where.not(worked_on: nil)
+  end
+
+  def confirm_attendance
+    @child = Child.find(params[:child_id])
+    @attendance = @child.attendances.find(params[:attendance_id])
   end
 
   def new

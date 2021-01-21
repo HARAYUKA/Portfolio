@@ -11,6 +11,7 @@
       <th>月齢</th>
       <th>誕生日</th>
       <th>性別</th>
+      <th>連絡帳一覧</th>
     </tr>
 
     <% @all_children.each do |child| %>
@@ -23,6 +24,7 @@
           <td></td>
         <% end %>
         <td><%= child.gender_i18n %></td>
+        <td><%= link_to "一覧", index_attendance_teacher_path(@teacher, child), class: "btn btn-success" %></td>
       </tr>
     <% end %>
   </table>

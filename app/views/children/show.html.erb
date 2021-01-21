@@ -45,7 +45,7 @@
             <th>ご機嫌</th>
               <td><%= f.select :feeling, ['普', '良', '悪'], {include_blank: false}, class: "form-control" %></td>
             <th>体温</th>
-              <td colspan="3"></td>
+              <td colspan="3"><%= f.number_field :temp, :value =>"36.5", step: '0.1', class: "form-control" %></td>
           </tr>
           <tr>
             <th colspan="6", class="first">食事</th>

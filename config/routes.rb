@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       get 'edit_attendance' # 園児の連絡帳画面取得
       patch 'update_attendance/:child_id', to: 'teachers#update_attendance', as: 'update_attendance' # 園児の連絡帳更新
       get 'all_children' # 担当園児一覧表示
+      get 'index_attendance/:child_id', to: 'teachers#index_attendance', as: 'index_attendance' # 連絡帳一覧表示
+      get 'confirm_attendance/:child_id/:attendance_id', to: 'teachers#confirm_attendance', as: 'confirm_attendance' # 連絡帳確認ボタン
     end
   end
 end
