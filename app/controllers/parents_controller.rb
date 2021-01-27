@@ -23,8 +23,6 @@ class ParentsController < ApplicationController
 
   # 親ユーザー追加
   def create
-    # @school = School.find(1)
-    # @parent = @school.parents.new(parent_params)
     @parent = Parent.new(parent_params)
     if @parent.save
       log_in_parent @parent
@@ -69,7 +67,7 @@ class ParentsController < ApplicationController
   private
 
       def parent_params
-        params.require(:parent).permit(:name, :email, :phone_number, :password, :password_confirmation)
+        params.require(:parent).permit(:name, :email, :phone_number, :relationship, :password, :password_confirmation)
       end
 
       def manag_info_params

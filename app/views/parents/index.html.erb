@@ -27,20 +27,48 @@
 
     <% @parents.each do |parent| %>
       <% children = Child.where(parent_id: parent.id) %>
-      <% children.each do |child| %>
-        <tr>
-          <td><%= link_to parent.name, parent %></td>
-          <td><%= parent.relationship %></td>
+      <% if children.blank? %>
+      <tr>
+        <td><%= link_to parent.name, parent %></td>
+        <td><%= parent.relationship %></td>
+        <td></td>
+        <td></td>
+        <td>
+          <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
+          <%= link_to "削除", parent, method: :delete,
+          data: { confirm: "削除してよろしいですか？" },
+          class: "btn btn-danger" %>
+        </td>
+      </tr>
+      <% else %>
+        <% saved_parent_name = nil %>
+        <% children.each do |child| %>
+          <tr>
+            <% if parent.name == saved_parent_name %>
+              <td></td>
+              <td></td>
+            <% else %>
+              <td><%= link_to parent.name, parent %></td>
+              <td><%= parent.relationship %></td>
+            <% end %>
+
             <td><%= child.child_name %></td>
               <% classroom = Classroom.find(child.classroom_id) %>
             <td><%= classroom.class_name %></td>
-          <td>
-            <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
-            <%= link_to "削除", parent, method: :delete,
-            data: { confirm: "削除してよろしいですか？" },
-            class: "btn btn-danger" %>
-          </td>
-        </tr>
+            
+            <% if parent.name == saved_parent_name %>
+              <td></td>
+            <% else %>
+              <% saved_parent_name = parent.name %>
+              <td>
+                <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
+                <%= link_to "削除", parent, method: :delete,
+                data: { confirm: "削除してよろしいですか？" },
+                class: "btn btn-danger" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
     <% end %>
   </table>

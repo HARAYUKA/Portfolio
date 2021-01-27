@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(version: 2020_10_02_052958) do
     t.string "name"
     t.string "email"
     t.integer "staff_id"
-    t.boolean "reply_check"
     t.string "password_digest"
     t.string "remember_digest"
     t.integer "classroom_id"

@@ -10,6 +10,9 @@
   <%= f.label :phone_number, class: "label-#{yield(:class_text)}" %>
   <%= f.phone_field :phone_number, class: "form-control" %>
 
+  <%= f.label "園児との関係性", class: "label-#{yield(:class_text)}" %>
+  <%= f.select :relationship, ['母', '父', '祖母', '祖父', 'おば', 'おじ'], {include_blank: '選択してください'}, class: "form-control" %>
+
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>
 
