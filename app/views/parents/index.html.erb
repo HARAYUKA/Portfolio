@@ -29,12 +29,12 @@
       <% children = Child.where(parent_id: parent.id) %>
       <% if children.blank? %>
       <tr>
-        <td><%= link_to parent.name, parent %></td>
+        <td><%= parent.name %></td>
         <td><%= parent.relationship %></td>
         <td></td>
         <td></td>
         <td>
-          <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
+          <!-- %= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" % -->
           <%= link_to "削除", parent, method: :delete,
           data: { confirm: "削除してよろしいですか？" },
           class: "btn btn-danger" %>
@@ -61,7 +61,7 @@
             <% else %>
               <% saved_parent_name = parent.name %>
               <td>
-                <%= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" %>
+                <!-- %= link_to "編集", edit_manag_info_parent_path(parent), remote: true, class: "btn btn-success" % -->
                 <%= link_to "削除", parent, method: :delete,
                 data: { confirm: "削除してよろしいですか？" },
                 class: "btn btn-danger" %>

@@ -30,7 +30,7 @@
           <% classroom = Classroom.find(teacher.classroom_id) %>
         <td><%= classroom.class_name %></td>
         <td>
-          <%= link_to "編集", edit_manag_info_teacher_path(teacher), remote: true, class: "btn btn-success" %>
+          <%= link_to "編集", edit_manag_info_teacher_path(teacher, classroom_id: teacher.classroom_id), remote: true, class: "btn btn-success" %>
           <%= link_to "削除", teacher, method: :delete,
           data: { confirm: "削除してよろしいですか？" },
           class: "btn btn-danger" %>

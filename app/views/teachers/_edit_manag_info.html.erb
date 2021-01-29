@@ -12,7 +12,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <%= form_with(model: @teacher, url: update_manag_info_parent_path(@teacher), local: true, method: :patch) do |f| %>
+          <%= form_with(model: @teacher, url: update_manag_info_teacher_path(@teacher), local: true, method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @teacher %>
           
             <%= f.label :name, class: "label-#{yield(:class_text)}" %>
@@ -24,8 +24,8 @@
             <%= f.label :staff_id, class: "label-#{yield(:class_text)}" %>
             <%= f.text_field :staff_id, class: "form-control" %>
           
-            <%= f.label :child_class, class: "label-#{yield(:class_text)}" %>
-            <%= f.select :child_class, ['ひよこ', 'あひる', 'ぺんぎん'], {include_blank: false}, class: "form_control" %>          
+            <%= f.label "クラス名", class: "label-#{yield(:class_text)}" %>
+            <%= f.select :classroom_id, [['ひよこ', 1],['あひる', 2], ['ぺんぎん', 3]], {selected: @teacher.classroom_id, include_blank: false}, class: "form_control" %>
 
             <div class="center">
               <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>

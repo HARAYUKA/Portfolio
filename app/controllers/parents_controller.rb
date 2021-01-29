@@ -51,17 +51,18 @@ class ParentsController < ApplicationController
     redirect_to parents_url
   end
 
-  def edit_manag_info
-  end
+  # 管理者のみ変更できる保護者編集ボタン
+  # def edit_manag_info
+  # end
 
-  def update_manag_info
-    if @parent.update_attributes(manag_info_params)
-      flash[:success] = "#{@parent.name}の基本情報を更新しました。"
-    else
-      flash[:danger] = "#{@parent.name}の更新は失敗しました。<br>" + @parent.errors.full_messages.join("<br>")
-    end
-    redirect_to parents_url
-  end
+  # def update_manag_info
+  #   if @parent.update_attributes(manag_info_params)
+  #     flash[:success] = "#{@parent.name}の基本情報を更新しました。"
+  #   else
+  #     flash[:danger] = "#{@parent.name}の更新は失敗しました。<br>" + @parent.errors.full_messages.join("<br>")
+  #   end
+  #   redirect_to parents_url
+  # end
 
 
   private
@@ -70,7 +71,7 @@ class ParentsController < ApplicationController
         params.require(:parent).permit(:name, :email, :phone_number, :relationship, :password, :password_confirmation)
       end
 
-      def manag_info_params
-        params.require(:parent).permit(:child_class)
-      end
+      # def manag_info_params
+      #   params.require(:parent).permit(:child_class)
+      # end
 end

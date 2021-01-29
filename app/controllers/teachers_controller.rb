@@ -5,6 +5,7 @@ class TeachersController < ApplicationController
   before_action :correct_teacher, only: [:edit, :update]
   # before_action :admin_teacher, only: :destroy
 
+  # 保育者一覧
   def index
     @teachers = Teacher.paginate(page: params[:page], per_page: 10)
     if params[:search].present?
@@ -12,6 +13,7 @@ class TeachersController < ApplicationController
     end
   end
 
+  # 出欠園児一覧
   def show
     @classroom = Classroom.find(@teacher.classroom_id)
     # @children = Child.joins(:classroom, :attendances).where(attendances: {status_attendance: "1"})
@@ -19,11 +21,13 @@ class TeachersController < ApplicationController
     @absence_children = @classroom.children.joins(:attendances).where(attendances: {status_attendance: "2", worked_on: Date.today}).order(:birthday)
   end
 
+  # 連絡帳の返信
   def edit_attendance
     @child = Child.find(params[:child_id])
     @attendance = @child.attendances.find_by(worked_on: Date.current)
   end
 
+  # 連絡帳の返信の更新
   def update_attendance
     @child = Child.find(params[:child_id])
     @attendance = @child.attendances.find_by(worked_on: Date.current)
@@ -37,11 +41,13 @@ class TeachersController < ApplicationController
     redirect_to @teacher and return
   end
 
+  # 担当園児一覧
   def all_children
     @classroom = Classroom.find(@teacher.classroom_id)
     @all_children = @classroom.children.order(:birthday)
   end
 
+  # 園児の連絡帳一覧
   def index_attendance
     # @classroom = Classroom.find(@teacher.classroom_id)
     @child = Child.find(params[:child_id])
@@ -55,11 +61,13 @@ class TeachersController < ApplicationController
     @attendances = @child.attendances.where(worked_on: @month.all_month).where.not(worked_on: nil)
   end
 
+  # 園児の連絡帳の確認ボタン
   def confirm_attendance
     @child = Child.find(params[:child_id])
     @attendance = @child.attendances.find(params[:attendance_id])
   end
 
+  
   def new
     @teacher = Teacher.new
   end
@@ -93,9 +101,11 @@ class TeachersController < ApplicationController
     redirect_to teachers_url
   end
 
+  # 管理者が変更可能な保育者情報編集
   def edit_manag_info
   end
 
+  # 管理者が変更可能な保育者情報更新
   def update_manag_info
     if @teacher.update_attributes(manag_info_params)
       flash[:success] = "#{@teacher.name}の基本情報を更新しました。"
@@ -108,11 +118,11 @@ class TeachersController < ApplicationController
   private
 
       def teacher_params
-        params.require(:teacher).permit(:name, :email, :staff_id, :child_class, :password, :password_confirmation)
+        params.require(:teacher).permit(:name, :email, :staff_id, :class_name, :password, :password_confirmation)
       end
 
       def manag_info_params
-        params.require(:teacher).permit(:staff_id, :child_class)
+        params.require(:teacher).permit(:staff_id, :classroom_id)
       end
 
       def edit_attendance_params
