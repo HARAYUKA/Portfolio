@@ -16,8 +16,10 @@
         <% elsif teacher_logged_in? %>
           <li class="nav-item"><%= link_to "出欠園児一覧", teacher_path(current_teacher), class: "nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "担当園児一覧", all_children_teacher_path(current_teacher), class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "保育者一覧", teachers_path, class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "保護者一覧", parents_path, class: "nav-link text-white" %></li>
+          <% if current_teacher.admin? %>
+            <li class="nav-item"><%= link_to "保育者一覧", teachers_path, class: "nav-link text-white" %></li>
+            <li class="nav-item"><%= link_to "保護者一覧", parents_path, class: "nav-link text-white" %></li>
+          <% end %>
           <li class="nav-item"><%= link_to "基本情報編集", edit_teacher_path(current_teacher), class: "nav-link text-white" %></li>
           <li class="nav-item">
             <%= link_to "ログアウト", teacher_logout_path, method: :delete, class: "nav-link text-white" %>

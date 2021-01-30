@@ -32,6 +32,7 @@ class ChildrenController < ApplicationController
     @parent = Parent.find(params[:parent_id])
     @child = @parent.children.find(params[:id])
     if @child.update_attributes(child_params)
+      debugger
       flash[:success] = "園児情報を更新しました。"
       redirect_to @parent
     else

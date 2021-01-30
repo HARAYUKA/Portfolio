@@ -1,9 +1,9 @@
 <% provide(:title, @parent.name) %>
 <h1><%= @child.child_name %>の連絡帳一覧</h1>
 
-<%= link_to "< 前月　", parent_child_attendances_path(@parent, @child, month: @month.last_month) %>
-<%= link_to " 当月 ", parent_child_attendances_path(@parent, @child, month: Date.today), class: "btn btn-primary" %>
-<%= link_to "　翌月 >", parent_child_attendances_path(@parent, @child, month: @month.next_month) %>
+<%= link_to "<　前月", parent_child_attendances_path(@parent, @child, month: @month.last_month), class: "btn btn-outline-info" %>
+<%= link_to " 当月 ", parent_child_attendances_path(@parent, @child, month: Date.today), class: "btn btn-outline-info" %>
+<%= link_to "翌月　>", parent_child_attendances_path(@parent, @child, month: @month.next_month), class: "btn btn-outline-info" %>
 
 <!--連絡帳一覧テーブル-->
 <div>
@@ -53,6 +53,6 @@
     <% end %>
   </table>
   <div class="center">
-    <%= link_to "戻る", parent_path(@parent), class: "btn-gradient-3d-orange" %>
+    <%= link_to "<　戻る", parent_path(@parent), class: "btn btn-outline-secondary" %>
   </div>
 </div>
