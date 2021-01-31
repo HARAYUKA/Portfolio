@@ -2,9 +2,9 @@ class ParentsController < ApplicationController
   before_action :set_parent, only: [:show, :edit, :update, :destroy, :edit_manag_info, :update_manag_info]
   before_action :logged_in_parent, only: [:show, :edit, :update]
   before_action :correct_parent, only: [:edit, :update]
-  # before_action :admin_teacher, only: :destroy
+  # before_action :not_admin_teacher, only: :destroy
 
-
+  # 保護者一覧
   def index
     @parents = Parent.paginate(page: params[:page], per_page: 10)
     if params[:search].present?
@@ -12,6 +12,7 @@ class ParentsController < ApplicationController
     end
   end
 
+  # 園児情報一覧
   def show
     @children = @parent.children
   end
@@ -33,9 +34,11 @@ class ParentsController < ApplicationController
     end
   end
 
+  # 基本情報編集
   def edit
   end
 
+  # 基本情報更新
   def update
     if @parent.update_attributes(parent_params)
       flash[:success] = "ユーザー情報を更新しました。"
@@ -45,6 +48,7 @@ class ParentsController < ApplicationController
     end
   end
 
+  # 保護者削除
   def destroy
     @parent.destroy
     flash[:success] = "#{@parent.name}のデータを削除しました。"

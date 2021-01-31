@@ -3,9 +3,10 @@ class TeachersController < ApplicationController
                                     :edit_attendance, :update_attendance, :all_children, :index_attendance, :confirm_attendance]
   before_action :logged_in_teacher, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_teacher, only: [:edit, :update]
-  # before_action :admin_teacher, only: :destroy
+  before_action :admin_teacher, only: [:show, :all_children]
+  before_action :not_admin_teacher, only: [:edit_manag_info, :update_manag_info, :destroy]
 
-  # 保育者一覧
+  # 先生一覧
   def index
     @teachers = Teacher.paginate(page: params[:page], per_page: 10)
     if params[:search].present?
@@ -67,11 +68,12 @@ class TeachersController < ApplicationController
     @attendance = @child.attendances.find(params[:attendance_id])
   end
 
-  
+  # 先生ユーザー作成
   def new
     @teacher = Teacher.new
   end
 
+  # 先生ユーザー追加
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
@@ -83,9 +85,11 @@ class TeachersController < ApplicationController
     end
   end
 
+  # 基本情報編集
   def edit
   end
 
+  # 基本情報更新
   def update
     if @teacher.update_attributes(teacher_params)
       flash[:success] = "ユーザー情報を更新しました。"
@@ -95,6 +99,7 @@ class TeachersController < ApplicationController
     end
   end
 
+  # 先生の削除
   def destroy
     @teacher.destroy
     flash[:success] = "#{@teacher.name}のデータを削除しました。"

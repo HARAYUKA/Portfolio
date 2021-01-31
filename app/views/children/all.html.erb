@@ -1,0 +1,50 @@
+<% provide(:title, 'All Children') %>
+<% if params[:search].present?%>
+  <h1>検索結果</h1>
+<% elsif params[:search].blank? %>
+  <h1>園児一覧</h1>
+<% end %>
+
+
+
+<div class="col-md-10 offset-md-1">
+  <%= will_paginate %>
+  <table class="table table-condensed table-hover" id="table-users">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>月齢</th>
+        <th>誕生日</th>
+        <th>性別</th>
+        <th>クラス</th>
+        <th>クラス変更</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+
+    <% @children.each do |child| %>
+      <tr>
+        <td><%= child.child_name %></td>
+        <td><%= child.age %></td>
+        <% if child.birthday != nil %>
+          <td><%= l(child.birthday, format: :default) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <td><%= child.gender_i18n %></td>
+        <td><%= Classroom.find(child.classroom_id).class_name %></td>
+        <td>
+          <%= link_to "編集", edit_class_path(child), remote: true, class: "btn btn-success" %>
+        </td>
+        <td>
+          <%= link_to "削除", destroy_from_admin_path(child), method: :delete,
+          data: { confirm: "削除してよろしいですか？" },
+          class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= will_paginate %>
+</div>
+
+<div id="edit-class" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

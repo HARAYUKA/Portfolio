@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-lg navbar-dark">
+<header class="navbar navbar-expand-lg navbar-dark fixed-top">
   <div class="container">
     <%= link_to "えんアプリ", root_path, id: "logo" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +19,7 @@
           <% if current_teacher.admin? %>
             <li class="nav-item"><%= link_to "保育者一覧", teachers_path, class: "nav-link text-white" %></li>
             <li class="nav-item"><%= link_to "保護者一覧", parents_path, class: "nav-link text-white" %></li>
+            <li class="nav-item"><%= link_to "園児一覧", all_path, class: "nav-link text-white" %></li>
           <% end %>
           <li class="nav-item"><%= link_to "基本情報編集", edit_teacher_path(current_teacher), class: "nav-link text-white" %></li>
           <li class="nav-item">

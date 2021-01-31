@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete 'parent/logout', to: 'sessions#parent_destroy'
   delete 'teacher/logout', to: 'sessions#teacher_destroy'
 
+  # 保護者&保護者に紐付く園児
   resources :parents do
     member do
       get 'edit_manag_info' # 管理者が編集可能な情報
@@ -23,6 +24,13 @@ Rails.application.routes.draw do
     end
   end
 
+  # 管理者のみが表示可能な園児一覧
+  get    'children', to: 'children#all', as: 'all'
+  delete 'children/:id', to: 'children#destroy_from_admin', as: 'destroy_from_admin'
+  get    'children/edit_class/:id', to: 'children#edit_class', as: 'edit_class'
+  patch  'children/update_class/:id', to: 'children#update_class', as: 'update_class'
+
+  # 管理者&保育者
   resources :teachers do
     member do
       get 'edit_manag_info' # 管理者が編集可能な情報

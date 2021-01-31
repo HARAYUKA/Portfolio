@@ -37,13 +37,14 @@
             <%= f.label :age, class: "label-#{yield(:class_text)}" %>
             <%= f.text_field :age, {class: "form-control", id: "nowAge"} %>
           
+            <%= f.label :gender %><br>
             <%= f.radio_button :gender, :man %>
             <%= f.label :gender, "男", {value: :man, style: "display: inline-block;"} %>
             <%= f.radio_button :gender, :woman %>
             <%= f.label :gender, "女", {value: :woman, style: "display: inline-block;"} %><br>
           
             <%= f.label :class_name, class: "label-#{yield(:class_text)}" %>
-            <%= @classrooms[0][:class_name] %>
+            <%= f.select :classroom_id, [['ひよこ', 1],['あひる', 2], ['ぺんぎん', 3]], {selected: @child.classroom_id, include_blank: false}, class: "form_control" %>
 
             <div class="center">
               <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
