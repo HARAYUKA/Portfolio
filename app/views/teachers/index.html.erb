@@ -25,7 +25,7 @@
 
     <% @teachers.each do |teacher| %>
       <tr>
-        <td><%= link_to teacher.name, teacher %></td>
+        <td><%= teacher.name %></td>
         <td><%= teacher.staff_id %></td>
           <% classroom = Classroom.find(teacher.classroom_id) %>
         <td><%= classroom.class_name %></td>

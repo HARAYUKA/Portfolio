@@ -21,8 +21,12 @@ class SessionsController < ApplicationController
     teacher = Teacher.find_by(email: params[:session][:email].downcase)
     if teacher && teacher.authenticate(params[:session][:password])
       log_in_teacher teacher
-      params[:session][:remember_me] == '1' ? remember(teacher) : forget(teacher)
-      redirect_back_or teacher
+      if current_teacher.admin?
+        redirect_to teachers_url
+      else
+        params[:session][:remember_me] == '1' ? remember(teacher) : forget(teacher)
+        redirect_back_or teacher
+      end
     else
       flash.now[:danger] = '認証に失敗しました。'
       render :teacher_login
