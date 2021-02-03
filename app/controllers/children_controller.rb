@@ -2,6 +2,13 @@ class ChildrenController < ApplicationController
   before_action :logged_in_parent, only: [:new, :create, :edit, :update, :show]
   before_action :not_admin_teacher, only: [:all, :destroy_from_admin, :edit_class, :update_class]
 
+  # 園児一覧
+  def index
+    @children = Child.paginate(page: params[:page], per_page: 10)
+    if params[:search].present?
+      @children = Child.paginate(page: params[:page]).search(params[:search]) 
+    end
+  end
   
   # 園児追加モーダル表示
   def new

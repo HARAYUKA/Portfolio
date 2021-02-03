@@ -50,8 +50,11 @@ class Parent < ApplicationRecord
   end
 
   # 保護者一覧のsearch
+  # １行目のjoinにすると、園児名やクラス名が登録されていないParentのレコードは拾ってこない為、シンプルに親情報検索のみに
   def self.search(search)
     return Parent.all unless search
+    # Parent.joins(children: :classroom).where(['name LIKE? OR relationship LIKE? OR child_name LIKE? OR class_name LIKE?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+    # Parent.joins(:children).where(['name LIKE? OR relationship LIKE? OR child_name LIKE?', "%#{search}%", "%#{search}%", "%#{search}%"])
     Parent.where(['name LIKE? OR relationship LIKE?', "%#{search}%", "%#{search}%"])
   end
 end

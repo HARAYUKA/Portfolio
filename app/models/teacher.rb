@@ -52,6 +52,10 @@ class Teacher < ApplicationRecord
   # 保育者一覧のsearch
   def self.search(search)
     return Teacher.all unless search
-    Teacher.where(['name LIKE? OR staff_id LIKE?', "%#{search}%", "%#{search}%"])
+    # 下記コードの問題点は、クラス名が登録されていないTeacherのレコードは拾ってこない事
+    Teacher.joins(:classroom).where(['name LIKE? OR staff_id LIKE? OR class_name LIKE?', "%#{search}%", "%#{search}%", "%#{search}%"])
+    # Teacher.joins(:classroom).where(classroom: {['class_name LIKE?', "%#{search}%"]})
+    #                          .where(['name LIKE? OR staff_id LIKE?', "%#{search}%", "%#{search}%"])
+    # Teacher.where(['name LIKE? OR staff_id LIKE?', "%#{search}%", "%#{search}%"])
   end
 end
