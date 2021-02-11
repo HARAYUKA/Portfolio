@@ -58,4 +58,18 @@ class Teacher < ApplicationRecord
     #                          .where(['name LIKE? OR staff_id LIKE?', "%#{search}%", "%#{search}%"])
     # Teacher.where(['name LIKE? OR staff_id LIKE?', "%#{search}%", "%#{search}%"])
   end
+
+  # # LINEログイン
+  # def self.from_omniauth(auth)
+  #   teacher = Teacher.where('email = ?', auth.info.email).first
+  #   if teacher.blank?
+  #     teacher = Teacher.new
+  #   end
+  #   teacher.uid   = auth.uid
+  #   teacher.name  = auth.info.name
+  #   teacher.email = auth.info.email
+  #   teacher.oauth_token = auth.credentials.token
+  #   teacher.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  #   teacher
+  # end
 end

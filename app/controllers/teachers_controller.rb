@@ -120,6 +120,24 @@ class TeachersController < ApplicationController
     redirect_to teachers_url
   end
 
+  # # LINEログイン
+  # def line_login
+  #   @teacher = Teacher.from_omniauth(request.env["omniauth.auth"])
+  #     result = @teacher.save(context: :line_login)
+  #     if result
+  #       log_in_teacher @teacher
+  #       redirect_to @teacher
+  #     else
+  #       redirect_to teacher_auth_failure_path
+  #     end
+  # end
+  
+  # #認証に失敗した際の処理
+  # def auth_failure 
+  #   @teacher = Teacher.new
+  #   render '任意のアクション'
+  # end
+
   private
 
       def teacher_params

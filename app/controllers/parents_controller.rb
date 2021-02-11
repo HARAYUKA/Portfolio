@@ -68,6 +68,24 @@ class ParentsController < ApplicationController
   #   redirect_to parents_url
   # end
 
+  # # LINEログイン
+  # def line_login
+  #   @parent = Parent.from_omniauth(request.env["omniauth.auth"])
+  #     result = @parent.save(context: :line_login)
+  #     if result
+  #       log_in_parent @parent
+  #       redirect_to @parent
+  #     else
+  #       redirect_to parent_auth_failure_path
+  #     end
+  # end
+  
+  # #認証に失敗した際の処理
+  # def auth_failure 
+  #   @parent = Parent.new
+  #   render '任意のアクション'
+  # end
+
 
   private
 

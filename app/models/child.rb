@@ -12,7 +12,7 @@ class Child < ApplicationRecord
   # 園児一覧のsearch
   def self.search(search)
     return Child.all unless search
-    Child.joins(:classroom).where(['child_name LIKE? OR age LIKE? OR birthday LIKE? OR class_name LIKE?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+    Child.joins(:classroom).where(['child_name LIKE? OR class_name LIKE?', "%#{search}%", "%#{search}%"])
   end
 
 end

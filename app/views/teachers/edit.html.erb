@@ -1,7 +1,11 @@
 <% provide(:title, "Edit") %>
 <% provide(:class_text, 'user--edit') %>
 <% provide(:button_text, '更新') %>
-<h1>保育者情報の更新</h1>
+<% if current_teacher.admin? %>
+  <h1>管理者情報の更新</h1>
+<% else %>
+  <h1>保育者情報の更新</h1>
+<% end %>
 
 <div class="row">
   <div class="col-md-6 offset-md-3">

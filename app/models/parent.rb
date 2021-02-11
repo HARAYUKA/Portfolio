@@ -57,4 +57,18 @@ class Parent < ApplicationRecord
     # Parent.joins(:children).where(['name LIKE? OR relationship LIKE? OR child_name LIKE?', "%#{search}%", "%#{search}%", "%#{search}%"])
     Parent.where(['name LIKE? OR relationship LIKE?', "%#{search}%", "%#{search}%"])
   end
+
+  # # LINEログイン
+  # def self.from_omniauth(auth)
+  #   parent = Parent.where('email = ?', auth.info.email).first
+  #   if parent.blank?
+  #     parent = Parent.new
+  #   end
+  #   parent.uid   = auth.uid
+  #   parent.name  = auth.info.name
+  #   parent.email = auth.info.email
+  #   parent.oauth_token = auth.credentials.token
+  #   parent.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  #   parent
+  # end
 end
