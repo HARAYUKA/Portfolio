@@ -18,6 +18,13 @@
 
       <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
     <% end %>
+    <%# <a href="https://access.line.me/oauth2/v2.1/authorize
+      ?response_type=code
+      &client_id=1655645379
+      &redirect_uri=https://localhost:3000/
+      &state=123abc
+      &scope=profile%20openid%20email">LINEログイン
+    </a> %>
     <p>
       新規ユーザーですか？<%= link_to "アカウント登録はこちら", new_teacher_path %>
     </p>

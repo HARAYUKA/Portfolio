@@ -9,11 +9,17 @@ Rails.application.routes.draw do
   delete 'parent/logout', to: 'sessions#parent_destroy'
   delete 'teacher/logout', to: 'sessions#teacher_destroy'
 
-  # LINEのAPI用
-  get '/parents/auth/line/callback', to: 'parents#line_login', as: :parents_auth_callback
-  get '/parents/auth/failure', to: 'parents#auth_failure', as: :parents_auth_failure
-  get '/teachers/auth/line/callback', to: 'teachers#line_login', as: :teachers_auth_callback
-  get '/teacheres/auth/failure', to: 'teachers#auth_failure', as: :teachers_auth_failure
+  # # LINEログインAPI用
+  # get '/parents/auth/line', to: 'parents#line', as: :parents_auth
+  # get '/parents/auth/line/callback', to: 'parents#line_login', as: :parents_auth_callback
+  # get '/parents/auth/failure', to: 'parents#auth_failure', as: :parents_auth_failure
+  
+  # get '/teachers/auth/line', to: 'teachers#line', as: :teachers_auth
+  # get '/teachers/auth/line/callback', to: 'teachers#line_login', as: :teachers_auth_callback
+  # get '/teacheres/auth/failure', to: 'teachers#auth_failure', as: :teachers_auth_failure
+
+  # LINEボットAPI用
+  post :line_events, to: 'line_events#recieve'
 
   # 保護者&保護者に紐付く園児
   resources :parents do
