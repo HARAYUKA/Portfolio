@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   # get '/teacheres/auth/failure', to: 'teachers#auth_failure', as: :teachers_auth_failure
 
   # LINEボットAPI用
-  post :line_events, to: 'line_events#recieve'
+  post '/callback' => 'line_bot#callback'
 
   # 保護者&保護者に紐付く園児
   resources :parents do
