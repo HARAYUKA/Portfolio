@@ -114,15 +114,20 @@ h4 {
   text-align: center;
 }
 
+h6 {
+  text-align: center;
+  color: #777;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
 
 /* LINEボタン */
-a .line-it-button{
-  // position: relative;
+.line-it-button{
   text-align: center;
+  margin-top: 45px;
 }
 
 /* header */
