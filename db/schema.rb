@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_125413) do
+ActiveRecord::Schema.define(version: 2021_02_22_132137) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -65,6 +65,12 @@ ActiveRecord::Schema.define(version: 2021_02_10_125413) do
   create_table "classrooms", force: :cascade do |t|
     t.string "class_name"
     t.string "class_teacher"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

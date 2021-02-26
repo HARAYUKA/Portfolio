@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
     @teacher = Teacher.find(params[:id])
   end
 
+  # paramsハッシュからお知らせ情報を取得します。
+  def set_notice
+    @notice = Notice.find(params[:id])
+  end
+
   # アクセスしたユーザーが現在ログインしている保護者か確認します。
   def correct_parent
     redirect_to(root_url) unless current_parent?(@parent)

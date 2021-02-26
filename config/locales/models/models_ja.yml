@@ -6,6 +6,7 @@ ja:
       classroom: クラス
       child: 子供
       attendance: 登園内容
+      notice: お知らせ
     attributes:
         parent:
           id: ID
@@ -68,6 +69,11 @@ ja:
           status_at_school: 園での様子
           info_from_home: 家庭からの連絡事項
           info_from_school: 園からの連絡事項
+          created_at: 作成日
+          updated_at: 更新日
+        notice:
+          id: ID
+          content: 内容
           created_at: 作成日
           updated_at: 更新日
   enums:

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notices/index'
   root 'home#top'
 
   # ログイン機能
@@ -54,4 +55,6 @@ Rails.application.routes.draw do
       get 'confirm_attendance/:child_id/:attendance_id', to: 'teachers#confirm_attendance', as: 'confirm_attendance' # 連絡帳確認ボタン
     end
   end
+
+  resources :notices
 end
