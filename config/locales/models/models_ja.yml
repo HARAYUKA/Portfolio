@@ -12,7 +12,7 @@ ja:
           id: ID
           name: 名前
           email: メールアドレス
-          phone_number: 電話番号
+          phone_number: 携帯番号
           relationship: 関係性
           password: パスワード
           password_confirmation: パスワード再入力

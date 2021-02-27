@@ -14,10 +14,20 @@ class NoticesController < ApplicationController
   def update
     if @notice.update_attributes(notice_params)
       flash[:success] = "お知らせの更新に成功しました。"
+      message = {
+        type: 'text',
+        text: @notice.content
+      }
+      client = Line::Bot::Client.new { |config| 
+        config.channel_secret = Rails.application.credentials.LINE[:LINE_CHANNEL_SECRET]
+        config.channel_token = Rails.application.credentials.LINE[:LINE_CHANNEL_TOKEN]  
+      }
+      response = client.broadcast(message)
       redirect_to notices_url and return
+      debugger
     elsif  params[:content].blank?
       flash[:danger] = "お知らせの内容を入力して下さい。"
-      redirect_to edit_notice_url and return
+      redirect_to notices_url and return
     end
   end
   
@@ -39,8 +49,9 @@ class NoticesController < ApplicationController
       }
       response = client.broadcast(message)
       redirect_to notices_url
-    else 
-      render :new
+    else
+      flash[:danger] = '内容を入力してください'
+      redirect_to notices_url and return
     end
   end 
   
