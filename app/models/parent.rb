@@ -13,7 +13,7 @@ class Parent < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
   VALID_PHONE_NUMBER_REGEX = /\A0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}\z|\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
-  validates :phone_number, presence: true, format: { with: VALID_PHONE_NUMBER_REGEX }
+  # validates :phone_number, format: { with: VALID_PHONE_NUMBER_REGEX }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
