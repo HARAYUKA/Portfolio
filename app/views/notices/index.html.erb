@@ -7,29 +7,27 @@
   <%= link_to "お知らせ新規追加", new_notice_path, remote: true, class: "btn btn-info" %>
 </div>
 
-<div class="col-md-10 offset-md-1">
-  <%= will_paginate %>
-  <table class="table table-bordered table-condensed" id="index-notice">
+<%= will_paginate %>
+<table class="table table-bordered table-condensed" id="index-notice">
+  <tr>
+    <th>作成日時</th>
+    <th>内容</th>
+    <th></th>
+  </tr>
+  
+  <% @notices.each do |notice| %>
     <tr>
-      <th>作成日時</th>
-      <th>内容</th>
-      <th></th>
+      <td><%= l(notice.created_at, format: :long) %></td>
+      <td><%= notice.content %></td>
+      <td><%= link_to "編集", edit_notice_path(notice), remote: true, class: "btn btn-primary" %></td>
+      <td><%= link_to "削除", notice_path(notice), method: :delete,
+        data: {confirm: "削除してよろしいですか？" },
+        class: "btn btn-danger" %>
+      </td>
     </tr>
-    
-    <% @notices.each do |notice| %>
-      <tr>
-        <td><%= l(notice.created_at, format: :long) %></td>
-        <td><%= notice.content %></td>
-        <td><%= link_to "編集", edit_notice_path(notice), remote: true, class: "btn btn-primary" %></td>
-        <td><%= link_to "削除", notice_path(notice), method: :delete,
-          data: {confirm: "削除してよろしいですか？" },
-          class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-  <%= will_paginate %>
-</div>
+  <% end %>
+</table>
+<%= will_paginate %>
 
 <!--モーダルウインドウ表示-->
 <div id="new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
